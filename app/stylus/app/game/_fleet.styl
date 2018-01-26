@@ -1,0 +1,66 @@
+.fleet
+  display: block
+  z-index: 2
+  position: absolute
+  left: 0
+  top: 0
+  text-align: center
+  cursor: pointer
+  transform-origin: center center
+
+  &:before
+    content: ''
+    display: block
+    position: absolute
+    left: 50%
+    top: 50%
+    border-radius: 50%
+    border: 1px solid steelblue
+
+  .fleet-units
+    display: block
+    color: #fff
+    font-size: 10px
+    text-shadow: #555 0 0 2px
+    position: relative
+    z-index: 1
+
+    .fleet-size
+      position: relative
+      z-index: 2
+
+    &:after
+      content: ''
+      display: block
+      width: 20px
+      height: 14px
+      margin-left: -10px
+      z-index: 1
+      position: absolute
+      left: 50%
+      top: 0
+      background-size: 100%
+      background-repeat: no-repeat
+
+    &.country-de:after
+      background-image: url(../img/countries/de.png)
+    &.country-en:after
+      background-image: url(../img/countries/gb.png)
+    &.country-us:after
+      background-image: url(../img/countries/us.png)
+
+
+  .fleet-icon
+    width: 48px
+    height: 12px
+    margin: 0 auto
+    display: block
+    background-repeat: no-repeat
+    background-size: 100%
+
+    &-cruiser
+      background-image: url('../img/units/cruiser.png')
+
+  .fleet-name
+    display: block
+    font-size: 8px

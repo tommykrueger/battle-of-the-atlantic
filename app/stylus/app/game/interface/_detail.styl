@@ -1,0 +1,118 @@
+.detail
+  // @extends $textStyle
+  width: 20%
+  padding: 20px
+  display: block
+  color: $colors.white
+  z-index: 10
+  position: absolute
+  left: 0
+  top: 32px
+  background-color: alpha(#333, 0.8)
+  border-right: 1px solid darken($colors.white, 15%)
+  border-bottom: 1px solid darken($colors.white, 15%)
+  box-shadow: alpha($colors.black, 0.5) 0 0 4px
+
+  .column
+    margin: 0
+    border-bottom: 1px solid #404040
+
+  &-close-btn
+    width: 32px
+    height: 32px
+    top: 0
+    right: 0
+    position: absolute
+    cursor: pointer
+    color: $colors.white
+    line-height: 32px
+    font-size: 26px
+    text-align: center
+    background-color: $colors.red
+
+  &-content
+    display: block
+
+
+  &-unit-header
+    display: block
+    margin: 0 0 10px 0
+
+    .detail-unit-name
+      display: block
+      line-height: 10px
+
+    .detail-unit-type
+    .detail-unit-class
+      display: inline-block
+      color: $colors.grey
+      font-size: 10px
+
+
+
+
+  &-image
+    width: auto
+
+  &-headline
+    width: 100%
+    margin: 0
+    padding: 5px 10px
+    display: inline-block
+    font-size: 12px
+    cursor: pointer
+    letter-spacing: 1px
+    background-color: $colors.black
+
+
+  &-list
+    max-width: 400px
+    display: block
+
+  &-list-item
+    width: 100px
+    padding: 2px
+    float: left
+
+
+.unit-image-wrapper
+  padding: 10px
+  border: 1px solid $colors.black
+  border-bottom: 0
+  background-color: alpha($colors.white, 0.3)
+
+.unit-health
+  width: 100%
+  height: 10px
+  margin: 0
+  left: 0
+  position: relative
+  background-color: grey
+  border: 1px solid $colors.black
+
+  &-bar
+    width: 82%
+    height: 8px
+    display: block
+    position: absolute
+    left: 0
+    top: 0
+    background-color: $colors.green
+
+
+.property-list
+  padding: 10px
+
+.property-group
+  display: block
+  font-size: 12px
+
+.property-label
+  width: 120px
+  display: inline-block
+
+.property-value
+  font-weight: bold
+
+.property-value-up
+  color: $colors.green

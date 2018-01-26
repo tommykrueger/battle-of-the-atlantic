@@ -1,0 +1,29 @@
+[
+  {
+    "country": "de",
+    "units": [
+      {
+        "type": "submarine",
+        "names": [
+          "U-1",
+          "U-2",
+          "U-3",
+          "U-4",
+          "U-5",
+          "..."
+        ]
+      },
+      {
+        "type": "battleship",
+        "names": [
+          "Bismarck",
+          "Tirpitz",
+          "Friedrich der Große",
+          "Hindenburg",
+          "Großdeutschland",
+          "..."
+        ]
+      }
+    ]
+  }
+]

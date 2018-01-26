@@ -1,0 +1,36 @@
+
+.menu
+  width: 60%
+  margin: 0 auto
+  text-align: center
+  z-index: 200
+  position: absolute
+  left: 20%
+  top: 32px
+
+  &-nav
+    display: block
+
+  &-nav-list
+    display: inline-block
+
+  &-nav-list-item
+    float: left
+    border-bottom: 1px solid  alpha(#222, 0.8)
+
+
+    & > .link
+      padding: 4px 12px
+      display: block
+      color: #f0f0f0
+      cursor: pointer
+      font-size: 14px
+      line-height: 24px
+      user-select: none
+      background-color: alpha(#333, 0.8)
+
+    &.is-active
+    &:hover
+      & > .link
+        color: $colors.white
+        background-color: $colors.red

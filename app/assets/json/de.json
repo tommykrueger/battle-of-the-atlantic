@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Germany",
+    "description": "...",
+    "ai": "de_default",
+    "money": 12000000,
+    "construction": {},
+    "fleets": {},
+    "research": {},
+    "places": {},
+    "units": {}
+  }
+]

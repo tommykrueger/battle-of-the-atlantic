@@ -1,0 +1,265 @@
+.combat
+  width: 720px
+  height: 80%
+  margin: 0 0 0 -360px
+  padding: 15px
+  display: none
+  z-index: 100
+  position: absolute
+  left: 50%
+  top: 10%
+  color: $colors.white
+  overflow: hidden
+  border: 1px solid darken(#cabfaf, 30%)
+  border-radius: 3px
+  background: alpha(#cabfaf, 0.82)
+  background-image: url(../img/interface/paper-bg.jpg)
+
+  &:before
+    width: 100%
+    height: 100%
+    content: ''
+    z-index: 1
+    position: absolute
+    top: 0
+    left: 0
+    background-color alpha(#000, 0.72)
+
+
+  &-header
+  &-content
+    z-index: 10
+    position: relative
+
+
+
+  /* combat country header row */
+  &-countries
+    clearfix()
+    border-top: 1px solid #fff
+    border-bottom: 1px solid #fff
+
+  &-country
+    width: 30%
+    display: block
+    float: left
+
+    &-left
+      display: block
+
+    &-right
+      float: right
+      text-align: right
+
+      .flag
+        float: right
+
+    &-icon
+      width: 60px
+      height: 32px
+      display: inline-block
+      border-radius: 4px
+      border: 1px solid #fff
+      vertical-align: middle
+      box-shadow: #000 0 0 4px
+      overflow: hidden
+      position: relative
+
+      &:before
+        content: ''
+        width: 100%
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+        background: linear-gradient(top, alpha(#000, 0.1), alpha(#000, 0.75))
+
+    &-name
+      color: #fff
+      font-size: 12px
+      line-height: 32px
+      text-transform: uppercase
+      text-shadow: #000 0px 1px 2px
+      display: inline-block
+      vertical-align: middle
+
+
+
+  &-content
+    padding: 15px
+    max-height: 80%
+    position: relative
+    z-index: 2
+    overflow-x: hidden
+    overflow-y: auto
+    border: 2px solid alpha(gold, 0.5)
+    border-radius: 3px
+
+
+  &-name
+    text-transform: uppercase
+
+  &-progress-bar
+    width: 40%
+    height: 16px
+    margin: 10px 0
+    display: block
+    float: left
+    padding: 1px
+    position: relative
+    z-index: 1
+    border: 1px solid darken(white, 25%)
+    background-color: white
+
+  &-progress-win
+  &-progress-lose
+    width: 0
+    height: 14px
+    display: block
+    position: absolute
+    left: 0
+    top: 0
+
+  &-progress-win
+    z-index: 2
+    background-color: green
+
+  &-progress-lose
+    width: 100%
+    z-index: 1
+    background-color: red
+
+
+
+  &-content
+    clearfix()
+
+  &-fleet-domestic
+  &-fleet-foreign
+    width: 50%
+    float: left
+
+  &-fleet-units
+    padding: 10px
+    display: block
+    font-size: 11px
+
+
+  &-fleet-unit
+    clearfix()
+    width: 100%
+    padding: 10px
+    display: block
+    position: relative
+    border-bottom: 1px solid alpha(#000, 0.4)
+    border-top: 1px solid alpha(#fff, 0.1)
+    background: alpha(#000, 0.2)
+
+    &:first-child
+      border-top: 0
+
+    &-name
+      font-weight: 900
+
+
+
+  /* special domestic (we) and foreign (enemy) styles */
+
+  &-fleet-domestic
+
+    .combat-fleet-unit-name
+      color: red
+
+
+  &-fleet-foreign
+
+    .combat-fleet-unit-name
+      color: steelblue
+      float: right
+      text-align: right
+
+    .combat-fleet-unit-type
+      text-align: right
+
+    .combat-fleet-unit-details
+      text-align: left
+
+    .combat-fleet-unit-image
+      top: 10px
+      left: 10px
+      right: auto
+
+
+  &-fleet-unit-name
+    width: 50%
+    display: block
+    float: left
+    font-size: 13px
+    text-align: left
+
+  &-fleet-unit-type
+    display: block
+    color: #707070
+    font-size: 10px
+    font-weight: bold
+
+  &-fleet-unit-details
+    width: 100%
+    display: block
+    clear: both
+    margin-top: 18px
+    color: #a0a0a0
+    text-align: right
+    position: relative
+    z-index: 2
+
+  &-fleet-unit-image
+    width: 50%
+    float: left
+    margin-bottom: 5px
+
+  &-fleet-unit-icon
+    width: 140px
+    height: auto
+
+    &-path
+      fill: #000
+      stroke: #a0a0a0
+      stroke-width: 1.5px
+
+  &-fleet-unit-damage
+    width: 100%
+    height: 100%
+    display: block
+    clip-path: url(#unit-clip-path)
+
+
+  // damage levels
+  .damage-low
+    fill: #00ffa0
+    background-color: #00ffa0
+  .damage-medium
+    fill: #fff000
+    background-color: #fff000
+  .damage-high
+    fill: #ff7500
+    background-color: #ff7500
+
+
+
+.unit-details-group
+  margin-right: 3px
+  border: 1px solid #555
+  background-color: alpha(#000, 0.88)
+
+  &:last-child
+    margin-right: 0
+
+  &-label
+    padding: 2px
+    color: #808080
+
+  &-value
+    padding: 2px
+    color: #d0d0d0
+    font-weight: bold

@@ -1,0 +1,98 @@
+$color = {
+  base: #536976
+}
+
+$color.light    = lighten($color.base, 30%)
+$color.lighter  = lighten($color.base, 50%)
+$color.dark     = darken($color.base, 15%)
+
+// TODO define technology grouped presets
+$presets = {
+  navy: {
+    highlight:  $color.light
+    light:      $color.light
+  }
+
+  air: {
+    highlight:  $color.light
+    light:      $color.light
+  }
+}
+
+
+
+.technology
+  width: 240px
+  height: 52px
+  margin: 0 10px 10px 0
+  padding: 5px
+  display: block
+  position: absolute
+  font-size: 10px
+  border: 1px solid #6d8389
+  background-image: linear-gradient(top,
+    $color.light 10%,
+    #536976 30%,
+    $color.dark 60%,
+    #536976 100%
+  )
+
+  &-inactive
+    opacity: 0.25
+
+  &-name
+    text-transform: normal
+
+  &-year
+    color: #d3a3a
+    font-weight: bold
+    right: 5px
+    top: 4px
+    position: absolute
+
+  &-components
+    display: block
+
+    span
+      width: 12px
+      height: 12px
+      margin-right: 4px
+      margin-top: 1px
+      display: block
+      float: left
+      border-radius: 4px
+      background-color: #fff
+      overflow: hidden
+
+  &-gains
+    display: none
+
+  &-requirements
+    display: none
+
+
+
+  &-cost
+    width: 48px
+    display: block
+    color: $colors.green
+    font-weight: bold
+    text-align: right
+    right: 5px
+    bottom: 4px
+    position: absolute
+
+
+
+  // sub components
+  &-air
+    border: 1px solid lighten(#9a8478, 20%)
+    background-image: linear-gradient(top,
+      lighten(#9a8478, 30%) 10%,
+      #9a8478 30%,
+      darken(#9a8478, 15%) 60%,
+      #9a8478 100%
+    )
+
+    .technology-progress
+      border: 1px solid lighten(#9a8478, 20%)

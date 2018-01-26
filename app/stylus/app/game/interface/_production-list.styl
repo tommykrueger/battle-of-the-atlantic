@@ -1,0 +1,116 @@
+.production-list
+
+  width: 100%
+  display: block
+  font-size: 12px
+
+  &-item
+    clearfix()
+    width: 100%
+    margin-bottom: 2px
+    display: block
+    padding: 4px 8px
+    text-align: left
+    position: relative
+    border: 1px solid #303030
+    border-top: 1px solid #888888
+    background-color: #565656
+
+    &.type-air
+      background-color: #775e54
+    &.type-sea
+      background-color: #3b3b52
+
+
+  .production-series
+    width: 5%
+    min-height: 10px
+    display: block
+    float: left
+    font-weight: bold
+    text-align: right
+    position: relative
+    z-index: 10
+
+  .production-step
+    width: 5%
+    display: block
+    float: left
+    font-weight: bold
+    text-align: right
+    position: relative
+    z-index: 10
+
+  .production-cost
+    width: 15%
+    display: block
+    float: left
+    text-align: right
+    position: relative
+    z-index: 10
+
+    .production-cost-value
+      color: $colors.red
+      line-height: 18px
+      font-weight: bold
+
+    .production-time
+      display: block
+      color: #a9a9a9
+      font-size: 10px
+      font-weight: normal
+      white-space: nowrap
+
+  .production-controls
+    width: 15%
+    display: block
+    float: left
+    cursor: pointer
+    color: $colors.green
+    font-size: 24px
+    font-weight: bold
+    text-align: right
+    position: relative
+    z-index: 10
+
+  .btn-delete
+    width: 32px
+    height: 32px
+    display: block
+    line-height: 32px
+    font-size: 36px
+    text-align: center
+    cursor: pointer
+    position: absolute
+    top: 3px
+    right: 10px
+    z-index: 10
+
+
+  .unit-name
+    width: 30%
+    float: left
+    font-size: 12px
+    position: relative
+    z-index: 10
+
+  .unit-type
+    font-size: 12px
+
+  .unit-class
+    display: block
+    color: #a9a9a9
+    font-size: 10px
+    text-transform: uppercase
+
+  .unit-image
+    width: 20%
+    margin-right: 1%
+    height: 32px
+    display: block
+    float: left
+    background-image: url('../img/units/cruiser.png')
+    background-repeat: no-repeat
+    background-size: 100%
+    position: relative
+    z-index: 10

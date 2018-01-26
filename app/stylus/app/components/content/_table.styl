@@ -1,0 +1,49 @@
+
+@require '../../_settings'
+
+.table
+  display: block
+  overflow: auto
+  border-collapse: collapse
+
+  &.table-dark
+    th
+      background-color: alpha($colors.black, 0.5)
+
+    tr
+      &:nth-child(2n+1)
+        td
+          background-color: alpha($colors.black, 0.25)
+
+  th
+  td
+    margin: 0
+    padding: 4px 6px
+    font-size: 12px
+    text-align: left
+    white-space: nowrap
+    vertical-align: top
+
+  td[align="right"]
+      text-align: right
+
+  th
+    padding: 4px 6px
+    color: $colors.white
+    background-color: $colors.black
+
+  tr
+
+    &:nth-child(2n+1)
+      td
+        background-color: darken($colors.white, 5%)
+
+
+    &.highlight
+      td
+        color: $colors.white
+        background-color: lighten($colors.orange, 20%)
+
+        a
+          color: $colors.white
+          text-decoration: underline

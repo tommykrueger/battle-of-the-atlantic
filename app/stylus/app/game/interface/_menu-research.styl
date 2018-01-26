@@ -1,0 +1,66 @@
+
+.menu-research
+  width: 100%
+  margin: 0 auto
+  padding-right: 20px
+  text-align: right
+
+  &-list
+    display: block
+
+  &-list-item
+    margin: 0 0 4px 0
+    display: block
+    border-bottom: 1px solid  alpha(#222, 0.8)
+
+
+    & > .link
+    & > span
+      padding: 4px 8px
+      display: block
+      color: #f0f0f0
+      cursor: pointer
+      font-size: 14px
+      line-height: 18px
+      user-select: none
+      cursor: pointer
+      background-color: alpha(#333, 0.8)
+      background-image: linear-gradient(top,
+        lighten(#536976, 30%) 10%,
+        #536976 30%,
+        darken(#536976, 30%) 60%,
+        #536976 100%
+      )
+
+      &:hover
+        color: $colors.white
+        background-color: $colors.red
+
+
+    .tabs-nav-item-is-active
+      & > .link
+      & > span
+        color: $colors.white
+        background-color: $colors.red
+
+
+  &-sublist
+    margin: 10px 0
+    display: block
+
+  &-sublist-item
+    margin: 0 0 4px 0
+    display: block
+
+    & > .link
+    & > span
+      display: block
+      cursor: pointer
+      color: $colors.grey
+      font-size: 12px
+
+  .tabs-nav-item-is-active
+    & > .link
+    & > span
+      color: $colors.white
+      background-color: transparent

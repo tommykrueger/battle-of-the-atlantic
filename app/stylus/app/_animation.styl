@@ -1,0 +1,56 @@
+@keyframes pulse
+	0%
+		opacity: 1
+		transform: scale(1)
+
+	50%
+		opacity: .85
+		transform: scale(.95)
+
+	100%
+		opacity: 1
+		transform: scale(1)
+
+
+
+@keyframes blink
+	0%
+		opacity: 0.2
+	50%
+		opacity: 0.8
+	100%
+		opacity: 0.2
+
+.blink
+	animation: blink 2s linear infinite
+
+
+
+
+@keyframes bgBlink
+	0%
+		background-color: $colors.red
+	50%
+		background-color: darken($colors.red, 20%)
+	100%
+		background-color: $colors.red
+
+.bgBlink
+	animation: bgBlink 1200ms ease-in-out infinite
+
+
+
+@keyframes letterSpacing
+	0%
+		letter-spacing: 0px
+	100%
+		letter-spacing: 8px
+
+
+
+
+@keyframes scaleX
+	0%
+		transform: scale(1.0, 1.0)
+	100%
+		transform: scale(1.35, 1.0)

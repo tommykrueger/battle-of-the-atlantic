@@ -1,0 +1,121 @@
+
+.section
+	display: block
+	clear: both
+	position: relative;
+
+
+	&-text-area
+		max-width: 560px
+		padding: 50px 0
+		position: relative
+		z-index: 2
+
+		p
+			margin: 0 0 25px 0
+
+		.txt-inline
+			margin: 0 20px
+
+
+	&-headline
+		margin: 0 0 25px 0
+		font-size: 48px
+
+
+	&-slider
+		margin: 0
+		padding: 50px 0
+		color: $colors.white
+		background-color: $colors.lightGrey
+		background: url(../../img/gamescreen-001.png) no-repeat center center
+
+		&:before
+			content: ''
+			width: 100%
+			height: 100%
+			display: block
+			position: absolute
+			left: 0
+			top: 0
+			background-color: alpha($colors.black, 25%)
+
+
+
+
+	&-showcase
+		padding: 50px 0
+		text-align: center
+		background-color: $colors.lightGrey
+		border-bottom: 1px solid darken($colors.lightGrey, 5%)
+
+		.image-list
+			width: auto
+			max-width: 800px
+			margin: 0 auto
+			float: none
+
+			& > li
+				width: 50%
+				padding: 2%
+				float: left
+				list-style: none
+
+			.figure
+				width: 100%
+
+				img
+					width: 100%
+					max-width: 100%
+					height: 180px
+
+
+
+	&-dark
+		padding: 50px 0
+
+		&:before
+			width: 100%
+			height: 100%
+			content: ''
+			z-index: -1
+			position: absolute
+			left: 0
+			top: 0
+			opacity: 0.35
+			background: #bbbfae
+
+		&:after
+			width: 100%
+			height: 100%
+			content: ''
+			z-index: -2
+			position: absolute
+			left: 0
+			top: 0
+			opacity: 0.35
+			background: url(../img/textures/texture_stone.jpg)
+			background-position: 50%
+			background-size: 150%
+
+
+	&-featured
+		height: 530px
+		margin-right: 15px
+
+	&-contribute
+		height: 250px
+		margin-left: 15px
+		color: $colors.white
+		background-color: $colors.orange
+
+
+
+
+	&-news
+		margin-left: 15px
+		color: $colors.white
+		background-color: $colors.orange
+
+		& > .column
+			width: 120px

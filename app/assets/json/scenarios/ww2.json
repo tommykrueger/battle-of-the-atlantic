@@ -1,0 +1,261 @@
+[
+	{
+		"name": "World War 2 - Battle of the Atlantic",
+		"desc": "Die Schlacht im Atlantik",
+		"image": "<path_to_image_file>",
+
+		"startDate": "1939-07-01",
+		"endDate": "1950-01-01",
+
+    "available_countries": [1, 2],
+
+		"conditions": {
+			"win": {
+				"control": [12,13,14,15,16],
+				"units": {
+					"sea": 15,
+					"air": 250
+				}
+			},
+			"lose": {
+
+			}
+		},
+
+		"map": {
+			"name": "europe_low_res.topo.json",
+			"type": "geojson",
+			"scale": 5000,
+			"scaleExtent": [1000, 5000],
+			"translate": [13.520645, 63.409779]
+		},
+
+		"countries": [
+			{
+				"id": 1,
+				"name": "United Kingdom",
+				"locale": "en",
+        "capital": 1,
+		    "fleets": [1],
+        "units": [],
+        "places": [1,2,3,4,5,6],
+				"properties": {
+					"population": 56000000,
+					"manpower": 0.05,
+					"mobilization_level": 1,
+					"resources": {
+						"money": 1000,
+						"oil": 10000,
+						"iron": 5000,
+						"food": 200000,
+						"consumer_goods": 3000,
+						"war_supplies": 1000
+					}
+				}
+			},
+      {
+				"id": 2,
+				"name": "Germany",
+				"locale": "de",
+        "capital": 101,
+		    "fleets": [1000],
+        "units": [],
+        "places": [101],
+				"properties": {
+					"population": 72000000,
+					"manpower": 0.1,
+					"mobilization_level": 5
+				}
+			},
+      {
+				"id": 3,
+				"name": "United States of America",
+				"locale": "us",
+        "capital": 201,
+		    "fleets": [2000],
+        "units": [],
+        "places": [201],
+				"properties": {
+					"population": 210000000,
+					"manpower": 0.02,
+					"mobilization_level": 1
+				}
+			}
+		],
+
+    "fleets": [
+      {
+        "id": 1,
+        "name": "Home Fleet",
+        "country": "en",
+        "position": [47.34164617, -7.26147461],
+        "waypoints": [
+          [48.34164617, -9.26147461],
+          [43.13306116, -11.40380859],
+          [36.7036596, -10.61279297],
+          [35.91574742, -5.64834595]
+        ],
+        "units": [
+          {
+            "name": "HMS Illustrious",
+            "type": "Aircraft Carrier"
+          }
+        ]
+      },
+      {
+        "id": 1000,
+        "name": "Kriegsmarineflotte",
+        "country": "de",
+        "position": [47.04018214, -17.05078125],
+        "waypoints": [],
+        "units": [
+          {
+            "name": "Bismarck",
+            "type": "Battleship"
+          }
+        ]
+      },
+      {
+        "id": 1001,
+        "name": "1. U-Bootflotte",
+        "country": "de",
+        "position": [46.04018214, -17.05078125],
+        "waypoints": [],
+        "units": [
+          {
+            "name": "U-99",
+            "type": "Submarine"
+          }
+        ]
+      }
+    ],
+
+    "places": [
+      {
+        "id": 1,
+        "name": "London",
+        "type": "capital",
+        "position": [51.508530, -0.076132],
+        "harbor": 0,
+        "air_field": 10
+      },
+      {
+        "id": 2,
+        "name": "Liverpool",
+        "type": "city",
+        "position": [53.41058, -2.97794],
+        "harbor": 10,
+        "air_field": 10
+      },
+      {
+        "id": 3,
+        "name": "Plymouth",
+        "type": "city",
+        "position": [50.376289,	-4.143841],
+        "harbor": 10,
+        "air_field": 0
+      },
+      {
+        "id": 4,
+        "name": "Scapa Flow",
+        "type": "island",
+        "position": [58.9667, -2.9833],
+        "harbor": 10,
+        "air_field": 0
+      },
+      {
+        "id": 5,
+        "name": "Gibraltar",
+        "type": "city",
+        "position": [36.14474, -5.35257],
+        "harbor": 10,
+        "air_field": 0
+      },
+      {
+        "id": 6,
+        "name": "Portsmouth",
+        "type": "city",
+        "position": [50.842991, -1.101002],
+        "harbor": 10,
+        "air_field": 0
+      },
+
+
+      {
+        "id": 101,
+        "name": "Berlin",
+        "type": "capital",
+        "position": [52.520645, 13.409779],
+        "harbor": 10,
+        "air_field": 10
+      },
+      {
+        "id": 201,
+        "name": "Washington",
+        "type": "capital",
+        "position": [47.751076, -120.740135],
+        "harbor": 0,
+        "air_field": 10
+      },
+      {
+        "id": 202,
+        "name": "New York",
+        "type": "city",
+        "position": [40.730610, -73.935242],
+        "harbor": 10,
+        "air_field": 10
+      },
+      {
+        "id": 203,
+        "name": "Norfolk",
+        "type": "city",
+        "position": [36.850769, -76.285873],
+        "harbor": 10,
+        "air_field": 0
+      },
+      {
+        "id": 204,
+        "name": "Halifax",
+        "type": "city",
+        "position": [44.651070, -63.582687],
+        "harbor": 10,
+        "air_field": 0
+      },
+
+      {
+        "id": 205,
+        "name": "Reykjavik",
+        "type": "city",
+        "position": [64.128288, -21.827774],
+        "harbor": 10,
+        "air_field": 2
+      },
+      {
+        "id": 206,
+        "name": "Paris",
+        "type": "city",
+        "position": [48.864716, 2.349014],
+        "harbor": 0,
+        "air_field": 10
+      }
+
+    ],
+
+    "research": [
+
+    ],
+
+    "units": [
+      {
+        "id": 1,
+        "name": "Bismarck",
+        "desc": "The largest German Ship during World War 2"
+      },
+      {
+        "id": 2,
+        "name": "U-99",
+        "desc": "..."
+      }
+    ]
+	}
+]

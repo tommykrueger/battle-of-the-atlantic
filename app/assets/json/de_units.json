@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "name": "U-Boot Typ XXI",
+    "type": "Submarine",
+    "class": "Typ 21",
+    "components": [
+      "Double Hull",
+      "Guided Torpedoes",
+      "Advanced Sonar System",
+      "Advanced Radar System",
+      "Advanced Battery System",
+      "Advanced Range",
+      "Advanced "
+    ],
+    "dependent": []
+  }
+]

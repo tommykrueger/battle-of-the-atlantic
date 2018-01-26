@@ -1,0 +1,44 @@
+
+.tooltip
+
+	width: auto
+	max-width: 260px
+	display: none
+	padding: 8px
+
+	position: absolute
+	z-index: 1000
+
+	color: $colors.white
+	font-size: 10px
+	border: 1px solid #333
+	background-color: rgba(30, 30, 30, 0.95)
+	border-radius: 2px
+
+
+
+	// deprecated
+	.headline
+		padding: 0 4px 10px 4px
+		color: $colors.white
+		font-size: 1em
+		text-transform: uppercase
+
+	.property
+		padding: 4px
+		font-size: 0.75em
+
+	.property:nth-child(2n+1)
+		background-color: $colors.grey
+		background-color: rgba($colors.black, 0.2)
+
+	.label
+		width: 140px
+		margin: 0 12px 0 0
+		color: $colors.wwhite
+		display: inline-block
+
+	.value
+		color: $colors.blue
+		display: inline-block
+		vertical-align: top

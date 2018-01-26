@@ -1,0 +1,40 @@
+[
+	{
+		"name": "Fall Weserübung",
+		"desc": "Der Fall Weserübung",
+		"image": "<path_to_image_file>",
+
+		"startDate": "1940-04-01",
+		"endDate": "1940-06-01",
+
+		"conditions": {
+			"win": {
+				"control": [12,13,14,15,16],
+				"units": {
+					"sea": 15,
+					"air": 250
+				}
+			},
+			"lose": {
+
+			}
+		},
+
+		"definition": {
+			"countries": [
+				{
+					"id": 1,
+					"name": "United Kingdom",
+					"locale": "en",
+					"fleets": [
+						{
+							"id": 1,
+							"name": "Home Fleet",
+							"position": [12, -23]
+						}
+					]
+				}
+			]
+		}
+	}
+]

@@ -1,0 +1,36 @@
+.production
+
+  width: 100%
+  display: table
+  font-size: 12px
+  border-collapse: collapse
+
+
+  &-header
+    clearfix()
+    display: table-row
+    padding: 2px
+    font-weight: normal
+
+  &-column
+    margin: 2px
+    padding: 4px
+    display: table-cell
+    text-align: left
+
+  &-row
+    clearfix()
+    display: table-row
+    margin: 2px 0
+    cursor: pointer
+    border: 1px solid lighten(#904343, 20%)
+    border-radius: 2px
+    background-color: #904343
+
+    & > div
+      margin: 2px
+      font-weight: bold
+      background-color: none
+
+    &:hover
+      background-color: lighten(#904343, 20%)

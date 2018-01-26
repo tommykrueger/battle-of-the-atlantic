@@ -1,0 +1,28 @@
+.expandable
+  position: relative
+
+
+  &-control
+    cursor: pointer
+    padding-left: 20px
+
+    &:before
+      content: '+'
+      width: 16px
+      display: inline-block
+      font-size: 18px
+      color: $colors.red
+      text-align: center
+      position: absolute
+      left: 3px
+      top: 0px
+
+  &.expanded
+    .expandable-control
+      &:before
+        content: '-'
+
+
+  &-area
+    display: none
+    overflow: hidden

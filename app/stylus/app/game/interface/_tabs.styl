@@ -1,0 +1,81 @@
+
+$options = {
+  navItemActiveColor: #905040
+  navItem: darken($colors.white, 50%)
+}
+
+
+.tabs
+  display: block
+
+  &:after
+    content: ''
+    clear: both
+    display: block
+
+  &-nav
+    width: 100%
+    display: inline-block
+    text-align: center
+    font-size: 0
+
+    & > .tabs-nav-item
+      margin: 0 1px
+      padding: 8px 10px
+      display: inline-block
+      color: $options.navItem
+      font-size: 12px
+      text-align: center
+      cursor: pointer
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px
+      background: #333
+      user-select: none
+
+      &.tabs-nav-item-is-active
+      &:hover
+        color: #f0f0f0
+        background: $options.navItemActiveColor
+
+  .tab
+    min-height: 420px
+    display: none
+    padding: 20px
+    color: #f0f0f0
+    text-align: left
+    position: relative
+    border: 1px solid $options.navItemActiveColor
+    border-radius: 4px
+    overflow-y: scroll
+
+    &-active
+      display: block
+
+
+  &-vertical
+
+    & > .tabs-nav
+      display: block
+      width: 20%
+      float: left
+      border: 0
+
+      & > .tabs-nav-item
+        display: block
+        margin-right: 0
+        margin-bottom: 1px
+        text-align: right
+        border-radius: 0
+        border-top-left-radius: 4px
+        border-bottom-left-radius: 4px
+
+
+    & > .tab
+      display: none
+      width: 80%
+      float: left
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+
+      &.tab-active
+        display: block
