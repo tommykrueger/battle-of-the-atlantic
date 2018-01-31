@@ -50,6 +50,20 @@ export default class Datetime {
 
     });
 
+
+    $('.datetime-controls span').on('click', (e) => {
+
+      e.preventDefault();
+      let $btn = $(e.currentTarget);
+
+      if ($btn.hasClass('datetime-controls-minus'))
+        this.game.adjustSpeed(-1.0);
+      else
+        this.game.adjustSpeed(1.0);
+
+
+    });
+
   }
 
 
@@ -69,9 +83,9 @@ export default class Datetime {
   // elapsedTime since game start in milliseconds
   update ( elapsedTime ) {
 
+    elapsedTime *= this.game.speed;
     let dt = this.startDate.getTime() + (elapsedTime * this.timeShift.hourly);
     this.currentDate = new Date(dt);
-
     this.render();
 
   }

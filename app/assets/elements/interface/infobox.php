@@ -1,4 +1,4 @@
-<div class="infobox">
+<div class="infobox" data-tooltip="Yes">
 
   <div class="infobox-content">
     <span class="infobox-icon"></span>

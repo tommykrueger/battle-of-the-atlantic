@@ -1,19 +1,20 @@
-<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2" style="top: 120px;">
+<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2">
 
   <span class="technology-name">Fleet Carrier (Europa-Class)</span>
 
-  <span class="technology-components">
-    Ship Tactics
-    Maritime Communication
+  <span class="technology-year">1940</span>
 
+  <span class="technology-components">
+    <span>Ship Tactics</span>
+    <span>Maritime Communication</span>
   </span>
 
   <span class="technology-requirements">
     Simple Convoy Protection
   </span>
 
-  <span class="technology-progress">
-    <span class="technology-progress-bar" style="width: 0%"></span>
+  <span class="progress">
+    <span class="progress-bar" style="width: 0%"></span>
   </span>
   <span class="technology-cost">0/198</span>
 

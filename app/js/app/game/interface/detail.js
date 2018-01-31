@@ -1,20 +1,33 @@
 
 export default class Detail {
 
-  constructor() {
+  constructor (options = {}) {
+
+    this.app = options.app;
+    this.game = options.game;
 
     this.data = {
       units: 0,
       icon: '',
-      name: 'testname'
+      name: 'testname',
+      missions: []
     }
 
     this.template = ({data}) => {
       return `
-        <div class="detail">
-          <span class="units">${data.units}</span>
-          <span class="icon icon-${data.icon}"></span>
+        <div class="detail" data-id="${data.id}">
+          <span class="icon icon-${data.icon}">
+            <img src="./img/units/cruiser.png" />
+          </span>
           <span class="name">${data.name}</span>
+          <div class="object-missions">
+            <select id="missions">
+              ${data.missions.map(mission => `<option class="${mission}">${mission}</option>`).join('')}
+            </select>
+          </div>
+          <span class="units">
+            ${data.units.map(unit => `<span class="m">${unit.name}</span>`).join('')}
+          </span>
         </div>
       `
     };
@@ -31,7 +44,12 @@ export default class Detail {
   setData (data) {
 
     this.data = data;
-    $('body').find('.detail').html( this.template({data: this.data}) );
+    this.data.missions = this.game.config.missions;
+
+    console.log(this.data.missions);
+
+    $('body').find('.detail').remove();
+    $('body').append( this.template({data: this.data}) );
 
   }
 

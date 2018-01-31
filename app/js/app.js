@@ -10,7 +10,6 @@ export default class App {
   constructor () {
 
     this.global = new Global();
-
     this.init();
 
   }

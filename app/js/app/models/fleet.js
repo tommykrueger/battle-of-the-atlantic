@@ -127,9 +127,10 @@ export default class Fleet extends Model {
 	 * Calculate the position between the current position and the first waypoint
 	 * the fleet is moving to. The position is influenced by the fleets speed
 	 */
-	calculateCurrentPosition () {
+	calculateCurrentPosition (dtFrame) {
 
-		let speed = 15; // km per hour
+		// one hour in game is one second in real time
+		let speed = 15 * (dtFrame * this.game.speed / 1000); // km per hour
 		let pos = this.get('position');
 		let waypoints = this.get('waypoints');
 		let newPos = pos;
@@ -167,6 +168,21 @@ export default class Fleet extends Model {
 		}
 
 		return newPos;
+
+	}
+
+
+	checkForEnemies () {
+
+		// go through list of enemy fleets and check their distance
+		// if distance is within range calculate a detection change
+		// if fleet was detected it can be calculated the fleet units
+		// depending on the mission the own fleet can attack that fleet
+
+		//if (this.get('mission') == this.app.config.missions) {
+
+		//}
+
 
 	}
 

@@ -9,36 +9,20 @@
       <ul class="country-info-list">
 
         <li class="country-info-list-item">
-          <span class="label label-money">MON:</span>
-          <span class="value" data-property="money">0</span>
-          <span class="value value-down" data-property="moneyflow">(0)</span>
+          <span class="label label-money">Money:</span>
+          <span class="value" data-property="money">1200</span>
+          <span class="value value-up" data-property="moneyflow">(+17)</span>
         </li>
 
         <li class="country-info-list-item" data-tooltip="#tooltip-research">
-          <span class="label label-research">RES:</span>
+          <span class="label label-research">Tech:</span>
           <span class="value" data-property="research">6</span>
         </li>
 
-        <li class="country-info-list-item">
-          <span class="label label-harbor">HS:</span>
-          <span class="value" data-property="heavy-harbor-slots">3</span>
-          <span class="value value-up" data-property="heavy-harbor-slots-flow">(+1)</span>
-        </li>
-
-        <li class="country-info-list-item">
-          <span class="label label-harbor">LS:</span>
-          <span class="value" data-property="light-harbor-slots">45</span>
-          <span class="value value-up" data-property="light-harbor-slots-flow">(+7)</span>
-        </li>
-
-        <li class="country-info-list-item" data-tooltip="Warships Sunk: 45">
-          <span class="label">WS:</span>
-          <span class="value" data-property="warships-sunk">45</span>
-        </li>
-
-        <li class="country-info-list-item" data-tooltip="Enemy Merchant Ships Sunk Sunk: 378">
-          <span class="label">MS:</span>
-          <span class="value" data-property="merchant-ships-sunk">378</span>
+        <li class="country-info-list-item" data-tooltip="You have 1000 Food">
+          <span class="label label-research">Food:</span>
+          <span class="value" data-property="food">1000</span>
+          <span class="value value-up" data-property="foodflow">(+2)</span>
         </li>
 
       </ul>
@@ -57,6 +41,12 @@
 
 
     <div class="column medium-4">
+
+
+      <div class="datetime-controls">
+        <span class="datetime-controls-minus">-</span>
+        <span class="datetime-controls-plus">+</span>
+      </div>
 
       <div class="datetime datetime-is-paused bgBlink" data-tooltip="Click to pause/resume the game">
         <span class="datetime-weekday">Friday</span>

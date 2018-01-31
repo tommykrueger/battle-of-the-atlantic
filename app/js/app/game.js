@@ -6,6 +6,7 @@ import Stats from './framework/stats'
 import Chunk from './framework/chunk'
 import Arithmetics from './framework/arithmetics'
 
+import Config from './config/config';
 
 // TODO add game logic components
 import Worldmap from './game/map/worldmap'
@@ -15,6 +16,7 @@ import Research from './game/research'
 
 // models
 import Construction from './models/construction'
+import Country from './models/country'
 import Fleet from './models/fleet'
 import Place from './models/place'
 import Scenario from './models/scenario'
@@ -31,6 +33,11 @@ export default class Game {
 
     console.log('loading game');
 
+    // 1.0, 2.0, 3.0
+    // default: 1 second in real time is one hour in game
+    this.speed = 1.0;
+
+
     this.money = 1000;
     this.moneyFlow = -2; // per hour
 
@@ -39,6 +46,7 @@ export default class Game {
 
     this.stateRunning = false;
 
+    this.config = new Config();
     this.eventManager = new EventManager();
     this.arithmetics = new Arithmetics();
     this.stats = new Stats();
@@ -53,14 +61,15 @@ export default class Game {
 
     // load the selected scenario
     this.scenario = new Scenario({game: this});
-    this.scenario.fetch('json/scenarios/sealion.json', (data) => {
+    this.scenario.fetch('server/app.php?action=scenario&id=1', (data) => {
+    //this.scenario.fetch('json/scenarios/sealion.json', (data) => {
 
       console.log('loaded scenario');
       console.log(data);
 
-      if (data.length) {
+      if (data) {
 
-        this.data = data[0];
+        this.data = data;
 
         this.initComponents();
 
@@ -70,6 +79,7 @@ export default class Game {
           places: new Chunk()
         };
 
+        this.countries = [];
         this.fleets = [];
 
         // init countries (player / AIs)
@@ -78,6 +88,20 @@ export default class Game {
         // add units to countries
         // add production queues to countries
         // add research to countries
+
+        this.data.countries.forEach((country) => {
+
+          let countryObject = new Country({
+            app: this.app,
+            game: this,
+            properties: country
+          });
+
+          this.countries.push(countryObject);
+
+        });
+
+
 
         if (this.data.fleets.length) {
 
@@ -149,7 +173,7 @@ export default class Game {
     };
 
     this.interaction = new Interaction({app: this.app, game: this});
-    this.interface = new Interface({game: this});
+    this.interface = new Interface({app: this.app, game: this});
 
     this.components.tooltip.init();
     this.components.expandable.init();
@@ -167,7 +191,36 @@ export default class Game {
       [53.960477039743836, -3.6877663430591667]
     ];
 
+    let route2 = [
+      [-33.6005874686948, 17.1548110832809],
+      [-30.597364075020725, 12.357425470236938],
+      [-24.68867205187466, 9.22869572259957],
+      [-18.683911525249957, 6.7257119244896755],
+      [-13.677788196696794, 5.05705605908308],
+      [-10.619523525008027, 2.1369082946215365],
+      [-8.562977052741617, -0.15749352031253339],
+      [-4.002969141984747, -5.163461116532321],
+      [1.625265926975199, -11.212338628631233],
+      [3.9168314160599467, -13.089576477213654],
+      [8.126747506511325, -13.287394840766648]
+    ];
+
+
+    let route3 = [
+      [8.126747506511325, -13.287394840766648],
+      [8.100392573567316, -14.495632974723733],
+      [9.41895646107624, -17.640429776245636],
+      [11.853907258424181, -19.16517974061989],
+      [17.384166927475135, -19.451070358940065],
+      [24.324874197647606, -19.0698828678465],
+      [34.669780035820274, -11.827320537068786],
+      [44.415783655464665, -11.25553930042844],
+      [49.91591600531148, -5.44243006125159]
+    ];
+
     this.components.map.addRoute(route);
+    this.components.map.addRoute(route2);
+    this.components.map.addRoute(route3);
 
   }
 
@@ -199,42 +252,55 @@ export default class Game {
     let end = [30.94034, -29.90990];
 
     // this.components.map.drawLine(start, end, 'line');
+    let dtFrame = 0;
+    let tFrameOld = 0;
 
     // d3 timer uses requestAnimationFrame internally if available. The desired
     // framerate should be 60fps maximum
-    this.timer = d3.timer((t) => {
+    this.timer = d3.timer((tFrame) => {
 
       this.stats.start();
 
       if (this.stateRunning) {
 
+        tFrame *= this.speed;
+
         // elapsed time in milliseconds since game start
-        timeElapsed = (t - startTime) - pTime;
+        timeElapsed = (tFrame - startTime) - pTime;
+
+
+        // the time in ms per tick (ideally 17ms max (1000/60))
+        dtFrame = tFrame - tFrameOld;
+        tFrameOld = tFrame;
+
+        this.fleets.forEach( (fleet) => {
+
+          if (fleet.isMoving()) {
+
+            // console.log('fleet moving', fleet.get('name'));
+            // try to calculate the current position of the fleet
+            let newPos = fleet.calculateCurrentPosition(dtFrame);
+            //console.log('new pos', fleet.get('position'));
+
+            fleet.setPosition();
+
+          }
+
+          // checks if an enemy fleet is nearby
+          fleet.checkForEnemies();
+
+        });
 
         // process calculation after every second
-        if (this.secondsElapsed != Math.round(timeElapsed / 1000) ) {
+        if (this.secondsElapsed != Math.round( (timeElapsed) / 1000) ) {
 
-          // console.log('calculate per second');
+          console.log('calculate per second');
           this.secondsElapsed++;
           this.frameCount = 0;
 
-
-          this.fleets.forEach( (fleet) => {
-
-            if (fleet.isMoving()) {
-
-              // console.log('fleet moving', fleet.get('name'));
-              // try to calculate the current position of the fleet
-              let newPos = fleet.calculateCurrentPosition();
-              //console.log('new pos', fleet.get('position'));
-
-              fleet.setPosition();
-
-            }
-
+          this.countries.forEach((country) => {
+            country.update(timeElapsed);
           });
-
-
 
         }
 
@@ -243,6 +309,8 @@ export default class Game {
           // console.log('calculate per 5 second');
 
         }
+
+        this.interface.update(timeElapsed);
 
 
         //this.currentTime = this.startDate + timeElapsed;
@@ -259,7 +327,7 @@ export default class Game {
             //console.log('Om 0');
 
             // update the interface
-            this.interface.update(timeElapsed);
+            // this.interface.update(timeElapsed);
 
             // handle events
             this.scenario.checkEventOccured( timeElapsed );
@@ -370,16 +438,41 @@ export default class Game {
 
       }
 
+      // the game is not running
       else {
 
-        pTime = (t - startTime) - timeElapsed;
-        timeElapsed = (t - startTime) - pTime;
+        pTime = (tFrame - startTime) - timeElapsed;
+        timeElapsed = (tFrame - startTime) - pTime;
 
       }
 
       this.stats.end();
 
     });
+
+  }
+
+
+  getCurrentDate () {
+
+    return this.interface.components.datetime.currentDate;
+
+  }
+
+
+
+  adjustSpeed (speed) {
+
+    if (this.speed < 0) {
+      this.speed = 1.0;
+    }
+
+    else if (this.speed > 3.0) {
+      this.speed = 3.0;
+    }
+
+    else
+      this.speed += speed;
 
   }
 

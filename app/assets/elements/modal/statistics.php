@@ -10,58 +10,58 @@
   <div class="modal-content">
 
 
-    <div class="tabs">
+    <table class="table table-dark">
 
-      <ul class="tabs-nav">
-        <li class="tabs-nav-item" data-tab="tab-industry"><span>Industry</span></li>
-        <li class="tabs-nav-item tabs-nav-item-is-active" data-tab="tab-navy"><span>Navy</span></li>
-      </ul>
+      <tr>
+        <th>Country</th>
+        <th>Aircraft Carrier</th>
+        <th>Light Carrier</th>
+        <th>Escort Carrier</th>
+        <th>Battleship</th>
+        <th>Battlecruiser</th>
+        <th>Heavy Cruiser</th>
+        <th>Light Cruiser</th>
+        <th>Destroyer</th>
+        <th>U-Boats</th>
+        <th>Merchant Ships</th>
+        <th>Coastal Ships</th>
+        <th>Total</th>
+      </tr>
 
-      <div class="tab" id="tab-industry">
+      <tr>
+        <td>United Kingdom</td>
+        <td>3 (<span class="value value-up">+1</span>)</td>
+        <td>4 (<span class="value value-up">+2</span>)</td>
+        <td>1</td>
+        <td>11 (<span class="value value-up">+3</span>)</td>
+        <td>2</td>
+        <td>16</td>
+        <td>24</td>
+        <td>67</td>
+        <td>23</td>
+        <td>2785 (<span class="value value-up">+124</span>)</td>
+        <td>345 (<span class="value value-up">+56</span>)</td>
+        <td>3120 (<span class="value value-up">+244</span>)</td>
+      </tr>
 
-        Industry Tab Pane
+      <tr>
+        <td>Germany</td>
+        <td>0 (<span class="value value-up">+1</span>)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2 (<span class="value value-up">+2</span>)</td>
+        <td>2</td>
+        <td>4 (<span class="value value-up">+4</span>)</td>
+        <td>6 (<span class="value value-up">+2</span>)</td>
+        <td>12 (<span class="value value-up">+4</span>)</td>
+        <td>245 (<span class="value value-up">+67</span>)</td>
+        <td>54 (<span class="value value-up">+2</span>)</td>
+        <td>123 (<span class="value value-up">+12</span>)</td>
+        <td>390 (<span class="value value-up">+87</span>)</td>
+      </tr>
 
-      </div>
+    </table>
 
-      <div class="tab tab-active" id="tab-navy">
-
-
-        <div class="tabs tabs-vertical">
-
-          <ul class="tabs-nav">
-            <li class="tabs-nav-item tabs-nav-item-is-active" data-tab="tab-aircraft-carrier"><span>Aircraft Carrier</span></li>
-            <li class="tabs-nav-item" data-tab="tab-battleship"><span>Battleship</span></li>
-            <li class="tabs-nav-item" data-tab="tab-battlecruiser"><span>Battlecruiser</span></li>
-            <li class="tabs-nav-item" data-tab="tab-cruiser"><span>Cruiser</span></li>
-            <li class="tabs-nav-item" data-tab="tab-convoy-escorts"><span>Convoy Escorts</span></li>
-            <li class="tabs-nav-item" data-tab="tab-destroyer"><span>Destroyer</span></li>
-            <li class="tabs-nav-item" data-tab="tab-submarine"><span>Submarine</span></li>
-          </ul>
-
-
-          <div class="tab tab-active" id="tab-aircraft-carrier">
-
-            <h1>Aircraft carrier</h1>
-
-            <p>AC Class: Illustrious</p>
-
-          </div>
-
-          <div class="tab" id="tab-destroyer">
-
-          </div>
-
-          <div class="tab" id="tab-submarine">
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-    </div>
 
   </div>
 

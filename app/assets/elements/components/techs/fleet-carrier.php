@@ -6,18 +6,20 @@
 
   <span class="technology-components">
     <span>Capital Ship Design</span>
-    <span>Flight Control</span>
-    <span>Air Tests</span>
+    <span>Deckbased Flight Control</span>
+    <span>Prototype Testing</span>
+    <span>Flight Tests</span>
     <span>Hangar Logistics</span>
     <span>Light Artillery</span>
+    <span>Fleet Integration Theory</span>
   </span>
 
   <span class="technology-requirements">
     Simple Convoy Protection
   </span>
 
-  <span class="technology-progress">
-    <span class="technology-progress-bar" style="width: 0%"></span>
+  <span class="progress">
+    <span class="progress-bar" style="width: 23%"></span>
   </span>
   <span class="technology-cost">0/198</span>
 

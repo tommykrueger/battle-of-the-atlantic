@@ -1,6 +1,8 @@
-<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2" style="top: 220px">
+<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2">
 
   <span class="technology-name">Fleet Carrier (Amerika-Class)</span>
+
+  <span class="technology-year">1945</span>
 
   <span class="technology-components">
     Ship Tactics
@@ -12,8 +14,8 @@
     Simple Convoy Protection
   </span>
 
-  <span class="technology-progress">
-    <span class="technology-progress-bar" style="width: 0%"></span>
+  <span class="progress">
+    <span class="progress-bar" style="width: 0%"></span>
   </span>
   <span class="technology-cost">0/198</span>
 

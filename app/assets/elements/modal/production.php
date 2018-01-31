@@ -26,11 +26,23 @@
           <li class="">Light Crusier (Nürnberg)</li>
           <li class="">Destroyer (W)</li>
           <li class="">Destroyer (S)</li>
-          <li class="">Submarine (XXII)</li>
-          <li class="">Submarine (XXI)</li>
+          <li class="">Electric Submarine (XXIII)</li>
+          <li class="">Electric Submarine (XXI)</li>
+          <li class="">Supply Submarine (VIIF)</li>
+          <li class="">Submarine (VIID)</li>
+          <li class="">Submarine (VIIC/42)</li>
+          <li class="">Submarine (VIIC/41)</li>
           <li class="">Submarine (VIIC)</li>
-          <li class="">Submarine (VII)</li>
-          <li class="">Submarine (II)</li>
+          <li class="">Submarine (VIIB)</li>
+          <li class="">Submarine (VIIA)</li>
+          <li class="">Submarine (IXD)</li>
+          <li class="">Submarine (IXC/40)</li>
+          <li class="">Submarine (IXC)</li>
+          <li class="">Submarine (IXB)</li>
+          <li class="">Submarine (IXA)</li>
+          <li class="">Coastal Submarine (IID)</li>
+          <li class="">Coastal Submarine (IIC)</li>
+          <li class="">Coastal Submarine (IIB)</li>
         </ol>
 
       </div>
@@ -41,7 +53,12 @@
 
             <ol class="production-list">
 
-              <?php $unitsp = [
+              <?php
+
+                $unitsp = [];
+                
+                /*
+                $unitsp = [
                 [
                   'id' => 1,
                   'class' => 'Admiral Graf Spee',
@@ -102,7 +119,9 @@
                   'step' => '1/4',
                   'cost' => 2.3
                 ]
-              ];?>
+                ];
+                */
+              ?>
 
 
 

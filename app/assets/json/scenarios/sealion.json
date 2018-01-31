@@ -41,6 +41,7 @@
         "units": [],
         "places": [1,2,3,4,5,6],
 				"properties": {
+					"agressiveness": 0,
 					"population": 56000000,
 					"manpower": 0.05,
 					"mobilization_level": 1,
@@ -63,6 +64,7 @@
         "units": [],
         "places": [101, 102, 103, 104, 105, 106, 107],
 				"properties": {
+					"agressiveness": 0,
 					"population": 72000000,
 					"manpower": 0.1,
 					"mobilization_level": 5
@@ -89,6 +91,76 @@
           }
         ]
       },
+			{
+        "id": 2,
+        "name": "HX 21",
+        "country": "en",
+				"type": "convoy",
+        "position": [59.920402576657004, -15.718906161819945],
+        "waypoints": [
+					[53.960477039743836, -3.6877663430591667]
+        ],
+        "units": [
+          {
+            "name": "Erebus",
+            "type": "merchant"
+          },
+					{
+						"name": "Albatros",
+						"type": "merchant"
+					}
+        ]
+      },
+			{
+        "id": 3,
+        "name": "HX 22",
+        "country": "en",
+				"type": "convoy",
+        "position": [55.81909576120421, -39.96075505036778],
+        "waypoints": [
+					[59.55844291409168, -31.52100025213261],
+		      [59.920402576657004, -23.97909170902884],
+		      [59.920402576657004, -15.718906161819945],
+		      [53.960477039743836, -3.6877663430591667]
+				],
+        "units": [
+          {
+            "name": "Erebus",
+            "type": "merchant"
+          },
+					{
+						"name": "Albatros",
+						"type": "merchant"
+					}
+        ]
+      },
+			{
+        "id": 4,
+        "name": "HX 23",
+        "country": "en",
+				"type": "convoy",
+        "position": [46.01900429772899, -50.46555623540518],
+        "waypoints": [
+					[49.63371614120294, -46.15589421077445],
+		      [52.727738014744126, -43.82149394743281],
+		      [55.81909576120421, -39.96075505036778],
+		      [59.55844291409168, -31.52100025213261],
+		      [59.920402576657004, -23.97909170902884],
+		      [59.920402576657004, -15.718906161819945],
+		      [53.960477039743836, -3.6877663430591667]
+				],
+        "units": [
+          {
+            "name": "Erebus",
+            "type": "merchant"
+          },
+					{
+						"name": "Albatros",
+						"type": "merchant"
+					}
+        ]
+      },
+
       {
         "id": 1000,
         "name": "Kriegsmarineflotte",
@@ -217,6 +289,39 @@
         "name": "Portsmouth",
         "type": "city",
         "position": [50.842991, -1.101002],
+        "harbor": 10,
+        "air_field": 0
+      },
+
+			{
+        "id": 7,
+        "name": "Capetown",
+        "type": "city",
+        "position": [-33.922667, 18.416689],
+        "harbor": 10,
+        "air_field": 0
+      },
+			{
+        "id": 8,
+        "name": "Freetown",
+        "type": "city",
+        "position": [8.483333, -13.233056],
+        "harbor": 10,
+        "air_field": 0
+      },
+			{
+        "id": 9,
+        "name": "Halifax",
+        "type": "city",
+        "position": [44.64787, -63.57156],
+        "harbor": 10,
+        "air_field": 0
+      },
+			{
+        "id": 10,
+        "name": "Sydney",
+        "type": "city",
+        "position": [46.13, -60.1829],
         "harbor": 10,
         "air_field": 0
       },

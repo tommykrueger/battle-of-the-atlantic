@@ -14,8 +14,8 @@
 
       <tr>
         <th>Name</th>
-        <th>Capacity (Capital Ships)</th>
-        <th>Capacity (Small Ships)</th>
+        <th>Heavy Shipyards</th>
+        <th>Light Shipyards</th>
         <th>Submarine Pen</th>
         <th>Air field</th>
       </tr>

@@ -1,4 +1,4 @@
-<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2" style="left: 300px; top: 120px">
+<div class="technology" data-id="2" data-model="technology" data-tooltip="#tooltip-technology-2">
 
   <span class="technology-name">Light Carrier (DeGrasse-Class)</span>
 

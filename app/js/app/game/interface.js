@@ -29,11 +29,12 @@ export default class Interface {
 
   constructor(options = {}) {
 
+    this.app = options.app;
     this.game = options.game;
 
     this.components = {
       datetime: new Datetime({game: this.game}),
-      detail: new Detail(),
+      detail: new Detail({app: this.app, game: this.game}),
       menu: new Menu({game: this}),
       modal: new Modal(),
       tabs: new Tabs()

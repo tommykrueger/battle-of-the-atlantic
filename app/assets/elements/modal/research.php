@@ -88,6 +88,34 @@
     </div>
     <?php */ ?>
 
+
+
+    <?php
+
+      $research = [
+        [
+          'id' => 1,
+          'name' => 'Fleet Carrier',
+          'class' => 'Graf Zeppelin',
+          'country' => 'de',
+          'year' => 1936,
+          'cost' => 198,
+          'components' => [
+            'Capital Ship Design',
+            'Deckbased Flight Control',
+            'Prototype Testing',
+            'Flight Tests',
+            'Hangar Logistics',
+            'Light Artillery',
+            'Fleet Integration Theory'
+          ]
+        ]
+      ];
+
+    ?>
+
+
+
     <div class="container tabs" data-component="tabs">
 
       <div class="column medium-3 large-3">
@@ -133,12 +161,87 @@
 
         <div class="tab" id="tab-aircraft-carrier">
 
-          <?php include_once('elements/components/techs/fleet-carrier.php') ?>
-          <?php include_once('elements/components/techs/fleet-carrier-01.php') ?>
-          <?php include_once('elements/components/techs/fleet-carrier-02.php') ?>
+          <ul class="research-years-list">
+            <li>
+                <span class="year">1933</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1934</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1935</span>
+                <span class="tech-group-2">
+                  <?php include('elements/components/techs/light-carrier-01.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1936</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1937</span>
+            </li>
+            <li>
+                <span class="year">1938</span>
+            </li>
+            <li>
+                <span class="year">1939</span>
+            </li>
+            <li>
+                <span class="year">1940</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier-01.php') ?>
+                </span>
+                <span class="tech-group-2">
+                  <?php include('elements/components/techs/light-carrier-02.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1941</span>
+            </li>
+            <li>
+                <span class="year">1942</span>
+            </li>
+            <li>
+                <span class="year">1943</span>
+            </li>
+            <li>
+                <span class="year">1944</span>
+            </li>
+            <li>
+                <span class="year">1945</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier-02.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1946</span>
+            </li>
+            <li>
+                <span class="year">1947</span>
+                <span class="tech-group-1">
+                  <?php include('elements/components/techs/fleet-carrier-03.php') ?>
+                </span>
+            </li>
+            <li>
+                <span class="year">1948</span>
+            </li>
+            <li>
+                <span class="year">1949</span>
+            </li>
+            <li>
+                <span class="year">1950</span>
+            </li>
+          </ul>
 
-          <?php include_once('elements/components/techs/light-carrier-01.php') ?>
-          <?php include_once('elements/components/techs/light-carrier-02.php') ?>
 
         </div>
 

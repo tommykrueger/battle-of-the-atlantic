@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../framework/collection.php');
+include_once ('./framework/collection.php');
 
 class UnitsCollection extends Collection {
 

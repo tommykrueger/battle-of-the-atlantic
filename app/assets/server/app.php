@@ -4,7 +4,7 @@ include_once 'scenario.php';
 
 class App {
 
-  __construct() {
+  public function __construct() {
 
     $this->scenario = new Scenario();
 

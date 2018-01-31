@@ -1,10 +1,15 @@
 <?php
 
+include_once ('./collections/cities.php');
+include_once ('./collections/scenarios.php');
+include_once ('./collections/units.php');
+
+
 class Scenario {
 
   public function __construct() {
 
-
+    $this->scenarioCollection = new ScenarioCollection();
 
   }
 
@@ -15,13 +20,10 @@ class Scenario {
 
       // check if a scenario of that id is available
       // load scenario data
-      $this->data = [
-        'id' => 1,
-        'name' => 'World War 2 - Operation Sealion'
-      ];
+      $this->data = $this->scenarioCollection->get();
 
     } else {
-      
+
       $this->data = ['message' => 'No scenario found'];
 
     }

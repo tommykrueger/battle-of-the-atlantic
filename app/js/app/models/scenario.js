@@ -35,7 +35,7 @@ export default class Scenario extends Model {
 
 				// console.log(myBlob);
 	      this.data = myBlob;
-				this.scenarioData = myBlob[0];
+				this.scenarioData = myBlob;
 
 				if (callback)
 					callback(this.data);
