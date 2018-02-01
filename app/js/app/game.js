@@ -61,7 +61,7 @@ export default class Game {
 
     // load the selected scenario
     this.scenario = new Scenario({game: this});
-    this.scenario.fetch('server/app.php?action=scenario&id=1', (data) => {
+    this.scenario.fetch('../server/app.php?action=scenario&id=1', (data) => {
     //this.scenario.fetch('json/scenarios/sealion.json', (data) => {
 
       console.log('loaded scenario');
@@ -421,6 +421,7 @@ export default class Game {
         // add a sunken ship randomly
         if (1 == this.arithmetics.random(0, 10)) {
 
+          /*
           this.components.map.sunkShips.push(
             new Ship({
               app: this.app,
@@ -428,6 +429,7 @@ export default class Game {
               position: this.components.map.getRandomPosition(this.secondsElapsed)
             })
           );
+          */
 
           this.components.tooltip.init();
 

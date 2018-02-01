@@ -34,6 +34,20 @@ export default class Interaction extends Component {
 
     }
 
+    // n key => toggle node/path edit mode
+    if (keycode == 78) {
+
+      this.game.components.map.setEditMode();
+
+    }
+
+    // d for deleting a node and its paths
+    if (keycode == 68) {
+
+      this.game.components.map.pathfinder.deleteNode( this.game.components.map.currentNode );
+
+    }
+
   }
 
 }

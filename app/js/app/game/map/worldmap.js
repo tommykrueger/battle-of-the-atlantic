@@ -49,6 +49,9 @@ export default class Worldmap {
 
     this.routePaths = [];
 
+    this.isEditMode = false;
+    this.currentNode = null;
+
     this.init();
     this.initEvents();
 
@@ -73,8 +76,6 @@ export default class Worldmap {
     this.mainGroup = this.svg.append("g").attr('class', 'main');
     this.fleetsGroup = this.mainGroup.append("g").attr("class", "fleets");
     this.routesGroup = this.mainGroup.append("g").attr("class", "routes-paths");
-    this.nodesGroup = this.mainGroup.append("g").attr("class", "nodes");
-    this.pathsGroup = this.mainGroup.append("g").attr("class", "paths");
     this.fleetPathGroup = this.mainGroup.append("g").attr("class", "fleet-paths");
     this.shipsGroup = this.mainGroup.append("g").attr("class", "ships");
 
@@ -121,6 +122,11 @@ export default class Worldmap {
         .on("dblclick.zoom", null);
 
 
+    this.pathsGroup = this.svg.append("g").attr("class", "paths");
+    this.nodesGroup = this.svg.append("g").attr("class", "nodes");
+
+
+
 		//d3.json("https://gist.githubusercontent.com/abenrob/787723ca91772591b47e/raw/8a7f176072d508218e120773943b595c998991be/world-50m.json", (error, world) => {
     d3.json("json/maps/world-50m-simplified.json", (error, world) => {
     //d3.json("json/maps/world-50m.json", (error, world) => {
@@ -128,8 +134,24 @@ export default class Worldmap {
       //var features = world.features;
       //console.log(features);
 
+      var self = this;
+
+
+      this.pathfinder = new Pathfinder({ app: this.app, game: this.game });
+      this.pathfinder.loadAll(() => {
+
+        console.log('loaded');
+        this.pathfinder.calculateDistances();
+        this.renderNodes();
+        this.renderPaths();
+
+      });
+
       this.renderGraticules();
       this.renderLand(world);
+
+      //this.renderPaths();
+      //this.renderNodes();
       // this.renderCountries(world);
 
 
@@ -144,19 +166,6 @@ export default class Worldmap {
           .attr('cy', () => { return Math.random() * 300 });
 
 
-
-      this.pathfinder = new Pathfinder({ app: this.app, game: this.game });
-      this.pathfinder.calculateDistances();
-
-      this.nodes = this.nodesGroup
-        .selectAll(".node")
-        .data(this.pathfinder.nodes.getNodes())
-        .enter()
-        .append('circle')
-          .attr('class', 'node')
-          .attr('r', 4)
-          .attr('cx', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[0] })
-          .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] });
 
       setTimeout( () => {
 
@@ -199,14 +208,22 @@ export default class Worldmap {
     }
     */
 
+    $('body').removeClass('zoom-continent');
+    $('body').removeClass('zoom-country');
+    $('body').removeClass('zoom-globe');
+    $('body').removeClass('zoom-region');
+    $('body').removeClass('zoom-place');
+
     if (scale <= 500) {
       console.log('zoom globe');
 
+      $('body').addClass('zoom-globe');
       $('.place').hide();
 
     }
     if (scale > 500 && scale <= 1000) {
       console.log('zoom continent');
+      $('body').addClass('zoom-continent');
       $('.place').hide();
     }
     if (scale > 1000 && scale <= 1500) {
@@ -250,15 +267,12 @@ export default class Worldmap {
     this.redraw();
 
 
-
-    // space.scale(d3.event.scale * 3);
     //this.backgroundCircle.attr('r', d3.event.scale);
     //this.path.pointRadius(2 * d3.event.scale / this.scale0);
 
     //globe and stars spin in the opposite direction because of the projection mode
     //var spaceOrigin = [d3.event.translate[0] * -1, d3.event.translate[1] * -1];
     //space.origin(spaceOrigin);
-    //this.redraw();
 
   }
 
@@ -270,9 +284,9 @@ export default class Worldmap {
     // Redrawing DOM elements on the screen is the most expensive
     // calculation process. We need to split up the rendering process.
     //if (this.projectionChanged) {
-    this.timeout1 = setTimeout(() => {
+    //this.timeout1 = setTimeout(() => {
       this.land.attr('d', this.path);
-    }, 20);
+    //}, 0);
 
       setTimeout(() => {
         this.graticules.attr("d", this.path);
@@ -280,9 +294,24 @@ export default class Worldmap {
     //}
 
 
-    this.nodes
+    if (this.nodes != undefined) {
+      this.nodes
         .attr('cx', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[0] })
         .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] });
+    }
+
+
+    if (this.paths != undefined) {
+      this.paths
+        .attr('d', (d) => {
+
+          let a = this.pathfinder.nodes.getNodes().filter((n) => { return n.id == d.a })[0];
+          let b = this.pathfinder.nodes.getNodes().filter((n) => { return n.id == d.b })[0];
+
+          return this.line([a.latlon, b.latlon])
+
+        });
+    }
 
 
     // this.land.attr('d', this.path);
@@ -326,16 +355,44 @@ export default class Worldmap {
 
   initEvents () {
 
+
     this.clickList = [];
+
 
     let self = this;
     this.rect.on('click', function(e) {
 
       let pos = self.projection.invert(d3.mouse(this));
       self.clickList.push([pos[1], pos[0]]);
-      self.pathfinder.nodes.addNode([pos[1], pos[0]], 1);
-      console.log('clicked at: ', self.clickList);
 
+
+      if (!self.currentNode) {
+        self.currentNode = self.pathfinder.nodes.addNode([pos[1], pos[0]], 1);
+      }
+
+      if (self.isEditMode) {
+
+        let node = self.pathfinder.nodes.addNode([pos[1], pos[0]], 1);
+
+
+        console.log('add new node', node);
+
+        self.pathfinder.paths.addPath(self.currentNode, node);
+        self.pathfinder.save();
+
+        self.renderPaths();
+        self.renderNodes();
+
+
+        self.currentNode = node;
+        let n = d3.select('#node-' + self.currentNode.id);
+        n.classed('active', !n.classed('active'));
+
+      }
+
+
+
+      console.log('clicked at: ', self.clickList);
 
       if (self.game.selectedModel) {
         self.game.selectedModel.mapClicked( [pos[1], pos[0]] );
@@ -368,6 +425,78 @@ export default class Worldmap {
 
     this.options.width = window.innerWidth;
     this.options.height = window.innerHeight;
+
+  }
+
+
+
+
+  renderPaths () {
+
+
+
+    this.pathsGroup
+      .selectAll(".path").remove();
+
+    this.paths = this.pathsGroup
+      .selectAll(".path")
+      .data(this.pathfinder.paths.getPaths())
+      .enter()
+      .append('path')
+        .attr('class', 'path')
+        .attr('d', (d) => {
+
+          let a = this.pathfinder.nodes.getNodes().filter((n) => { return n.id == d.a })[0];
+          let b = this.pathfinder.nodes.getNodes().filter((n) => { return n.id == d.b })[0];
+
+          //console.log(a, b);
+
+          return this.line([a.latlon, b.latlon])
+
+        });
+
+  }
+
+
+  renderNodes () {
+
+    let country = this.game.countries.filter( (c) => { return c.get('id') == 2; })[0];
+
+    this.nodesGroup
+      .selectAll(".node").remove();
+
+    this.nodes = this.nodesGroup
+      .selectAll(".node")
+      .data(this.pathfinder.nodes.getNodes())
+      .enter()
+      .append('circle')
+        .attr('class', (d, i) => {
+          if ( country.get('ignore').indexOf(i) != -1 ) return 'node ignored';
+          return 'node';
+        })
+        .attr('id', (d) => { return 'node-' + d.id })
+        .attr('r', 4)
+        .attr('cx', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[0] })
+        .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] })
+        .on('click', (d) => {
+
+          let node = d3.select('#node-' + d.id);
+          node.classed('active', !node.classed('active'));
+
+          if (this.currentNode != null) {
+
+            this.pathfinder.paths.addPath(this.currentNode, d);
+            this.pathfinder.save();
+            this.currentNode = null;
+
+            node.classed('active', false);
+            this.renderPaths();
+
+          } else {
+            this.currentNode = d;
+          }
+
+        });
 
   }
 
@@ -631,20 +760,6 @@ export default class Worldmap {
 
   update (counter) {
 
-    //console.log(counter);
-    //this.fleets.forEach( (fleet) => {
-
-      //let newPos = fleet.getPosition();
-        //  newPos[0] += Math.random() * 0.01 * (Math.random() < 0.5 ? -1 : 1);
-          //newPos[1] += (Math.random() * 0.01) * (Math.random() < 0.5 ? -1 : 1);
-
-      // console.log(newPos);
-
-      // fleet.setPosition(newPos);
-
-    //});
-
-
     // update the position of ships
     if (counter % 4 == 0) {
 
@@ -663,6 +778,17 @@ export default class Worldmap {
 
     }
 
+
+  }
+
+
+  // Misc
+
+  setEditMode () {
+
+    this.isEditMode = !this.isEditMode;
+
+    console.log('mode', this.isEditMode);
 
   }
 

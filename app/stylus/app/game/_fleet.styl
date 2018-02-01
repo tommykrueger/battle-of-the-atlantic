@@ -58,9 +58,49 @@
     background-repeat: no-repeat
     background-size: 100%
 
-    &-cruiser
+    &-destroyer
       background-image: url('../img/units/cruiser.png')
 
   .fleet-name
     display: block
     font-size: 8px
+
+
+  .icon
+    display: none
+
+  .icon path
+    stroke: #000
+    stroke-width: 3px
+
+
+[data-locale="de"]
+  .icon
+    path
+      fill: #a09696
+
+
+[data-locale="en"]
+  .icon
+    path
+      fill: #ceb790
+
+
+
+.zoom-continent
+.zoom-globe
+
+  .fleet
+    margin-left: -8px !important
+    margin-top: -8px !important
+
+    &:before
+      display: none
+
+  .fleet-icon
+  .fleet-name
+  .fleet-units
+    display: none
+
+  .icon
+    display: block

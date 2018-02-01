@@ -75,6 +75,9 @@ class ScenarioCollection extends Collection {
           "units" => [],
           "places" => [101, 102, 103, 104, 105, 106, 107],
           "player" => true,
+
+          // ignore certain graph nodes
+          "ignore" => [8, 9, 10, 11],
   				"properties" => [
   					"agressiveness" => 0,
   					"population" => 79375000,
@@ -175,7 +178,8 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "HMS Illustrious",
-              "type" => "Aircraft Carrier"
+              "type" => "AircraftCarrier",
+              "weight" => 90
             ]
           ]
         ],
@@ -191,11 +195,13 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "Erebus",
-              "type" => "merchant"
+              "type" => "merchant",
+              "weight" => 90
             ],
   					[
   						"name" => "Albatros",
-  						"type" => "merchant"
+  						"type" => "merchant",
+              "weight" => 88
   					]
           ]
         ],
@@ -214,11 +220,13 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "Erebus",
-              "type" => "merchant"
+              "type" => "merchant",
+              "weight" => 90
             ],
   					[
   						"name" => "Albatros",
-  						"type" => "merchant"
+  						"type" => "merchant",
+              "weight" => 90
   					]
           ]
         ],
@@ -240,11 +248,13 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "Erebus",
-              "type" => "merchant"
+              "type" => "merchant",
+              "weight" => 90
             ],
   					[
   						"name" => "Albatros",
-  						"type" => "merchant"
+  						"type" => "merchant",
+              "weight" => 90
   					]
           ]
         ],
@@ -261,7 +271,8 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "Bismarck",
-              "type" => "Battleship"
+              "type" => "Battleship",
+              "weight" => 90
             ]
           ]
         ],
@@ -274,7 +285,8 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "U-99",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ]
           ]
         ],
@@ -289,7 +301,8 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "U-100",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ]
           ]
         ],
@@ -297,12 +310,13 @@ class ScenarioCollection extends Collection {
           "id" => 1003,
           "name" => "3. U-Bootflotte",
           "country" => "de",
-          "position" => [56.09671488524753, -7.730741940310955],
+          "position" => [54.910032282781174, 7.39115555718762],
           "waypoints" => [],
           "units" => [
             [
               "name" => "U-56",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ]
           ]
         ],
@@ -315,15 +329,18 @@ class ScenarioCollection extends Collection {
           "units" => [
             [
               "name" => "U-112",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ],
   					[
               "name" => "U-117",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ],
   					[
               "name" => "U-124",
-              "type" => "Submarine"
+              "type" => "Submarine",
+              "weight" => 90
             ]
           ]
         ]

@@ -20,6 +20,14 @@ export default class Fleet extends Model {
 		// flag for changed data set
 		this.changedDataFlag = true;
 
+		this.strategicIcons = {
+			aircraftcarrier: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16.104,51.908l16.971-16.971 M48.278,52.025L31.308,35.055',
+			merchant: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16,37h32 M32,42v10',
+			battleship: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M11,51h42 M15,43h34 M19,35h26',
+			destroyer: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16,37h32 M32,42v10',
+			submarine: 'M59,32c0,14.912-12.088,27-27,27S5,46.912,5,32c0-6.375,0-12,0-12h54C59,20,59,26.805,59,32z M16,33h32 M32,38v10'
+		}
+
 		this.renderView();
 		this.initEvents();
 		this.setPosition();
@@ -29,9 +37,9 @@ export default class Fleet extends Model {
 
 	renderView () {
 
-		let fleetIcon = this.defineFleetFlagshipIcon();
+		let fleetIcon = this.setFlagship();
 
-		this.$el = $('<div class="fleet"></div>');
+		this.$el = $('<div class="fleet" data-locale="' + this.get('country') + '"></div>');
 
 		this.$view = $(`
 			<span class="fleet-units country-${this.get('country')}">
@@ -39,6 +47,9 @@ export default class Fleet extends Model {
 			</span>
 			<span class="fleet-icon fleet-icon-${fleetIcon}"></span>
 			<span class="fleet-name">${this.get('name')}</span>
+			<svg class="icon" width="16px" height="16px" viewBox="0 0 64 64">
+				<path d="${this.strategicIcons[fleetIcon]}"/>
+			</svg>
 		`);
 
 		$('body').append( this.$el.html(this.$view) );
@@ -83,7 +94,7 @@ export default class Fleet extends Model {
 		return {
 			name: this.get('name'),
 			units: this.get('units'),
-			icon: this.defineFleetFlagshipIcon()
+			icon: this.setFlagship()
 		}
 
 	}
@@ -189,8 +200,27 @@ export default class Fleet extends Model {
 
 	mapClicked ( position ) {
 
-		this.set('waypoints', [position]);
-		this.renderWaypoints();
+		this.set('waypoints', []);
+
+		let p = this.game.components.map.pathfinder.findPath( this.get('position'), position);
+		console.log('found path', p);
+
+		if (p.path != undefined) {
+
+			let waypoints = this.get('waypoints');
+
+			p.path.forEach((path) => {
+				let s = this.game.components.map.pathfinder.nodes.getNodes()[path.source].latlon;
+				let t = this.game.components.map.pathfinder.nodes.getNodes()[path.target].latlon;
+				waypoints.push(s);
+				waypoints.push(t);
+			});
+
+			this.set('waypoints', waypoints);
+
+			this.renderWaypoints();
+
+		}
 
 	}
 
@@ -200,10 +230,14 @@ export default class Fleet extends Model {
 
   }
 
-	// TODO to be implemented
-	defineFleetFlagshipIcon() {
 
-		return 'cruiser';
+
+	// TODO to be implemented
+	setFlagship() {
+
+		let units = this.get('units');
+		let flagship = units.reduce((prev, current) => { return (prev.weight > current.weight) ? prev : current; });
+		return flagship.type.toLowerCase();
 
 	}
 
