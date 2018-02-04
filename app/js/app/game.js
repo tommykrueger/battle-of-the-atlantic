@@ -254,24 +254,34 @@ export default class Game {
     // this.components.map.drawLine(start, end, 'line');
     let dtFrame = 0;
     let tFrameOld = 0;
+    let dTime = 0;
+    let deltaElapsed = 0;
 
     // d3 timer uses requestAnimationFrame internally if available. The desired
     // framerate should be 60fps maximum
+    // tFrame = time in ms since timer start
     this.timer = d3.timer((tFrame) => {
 
       this.stats.start();
 
+      // console.log('time elapsed', timeElapsed);
+      // console.log('tFrame', tFrame);
+
       if (this.stateRunning) {
-
-        tFrame *= this.speed;
-
-        // elapsed time in milliseconds since game start
-        timeElapsed = (tFrame - startTime) - pTime;
 
 
         // the time in ms per tick (ideally 17ms max (1000/60))
-        dtFrame = tFrame - tFrameOld;
+        dtFrame = (tFrame - tFrameOld) * this.speed;
         tFrameOld = tFrame;
+
+        // elapsed time in milliseconds since game start
+        timeElapsed = (tFrame - startTime) - pTime;
+        timeElapsed += (dtFrame);
+
+
+        deltaElapsed += dtFrame;
+
+        console.log('d', deltaElapsed);
 
         this.fleets.forEach( (fleet) => {
 
@@ -310,12 +320,7 @@ export default class Game {
 
         }
 
-        this.interface.update(timeElapsed);
-
-
-        //this.currentTime = this.startDate + timeElapsed;
-
-        // console.log('count per frame: ', this.frameCount);
+        this.interface.update( deltaElapsed );
 
         // 1000 / 60 = 16.6666 => maximum iterations per frame
         // Provide 10 calculation slots for a minimum desired framerate
@@ -445,6 +450,8 @@ export default class Game {
 
         pTime = (tFrame - startTime) - timeElapsed;
         timeElapsed = (tFrame - startTime) - pTime;
+
+        tFrameOld = tFrame;
 
       }
 

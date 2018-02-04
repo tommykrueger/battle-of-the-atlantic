@@ -71,7 +71,7 @@ class ScenarioCollection extends Collection {
   				"name" => "Germany",
   				"locale" => "de",
           "capital" => 101,
-  		    "fleets" => [1000],
+  		    "fleets" => [1000, 1001, 1002, 1003, 1004],
           "units" => [],
           "places" => [101, 102, 103, 104, 105, 106, 107],
           "player" => true,
@@ -196,12 +196,12 @@ class ScenarioCollection extends Collection {
             [
               "name" => "Erebus",
               "type" => "merchant",
-              "weight" => 90
+              "weight" => 1
             ],
   					[
   						"name" => "Albatros",
   						"type" => "merchant",
-              "weight" => 88
+              "weight" => 1
   					]
           ]
         ],
@@ -221,12 +221,12 @@ class ScenarioCollection extends Collection {
             [
               "name" => "Erebus",
               "type" => "merchant",
-              "weight" => 90
+              "weight" => 1
             ],
   					[
   						"name" => "Albatros",
   						"type" => "merchant",
-              "weight" => 90
+              "weight" => 1
   					]
           ]
         ],
@@ -249,12 +249,12 @@ class ScenarioCollection extends Collection {
             [
               "name" => "Erebus",
               "type" => "merchant",
-              "weight" => 90
+              "weight" => 1
             ],
   					[
   						"name" => "Albatros",
   						"type" => "merchant",
-              "weight" => 90
+              "weight" => 1
   					]
           ]
         ],
@@ -286,7 +286,7 @@ class ScenarioCollection extends Collection {
             [
               "name" => "U-99",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ]
           ]
         ],
@@ -302,7 +302,7 @@ class ScenarioCollection extends Collection {
             [
               "name" => "U-100",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ]
           ]
         ],
@@ -316,7 +316,7 @@ class ScenarioCollection extends Collection {
             [
               "name" => "U-56",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ]
           ]
         ],
@@ -330,17 +330,17 @@ class ScenarioCollection extends Collection {
             [
               "name" => "U-112",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ],
   					[
               "name" => "U-117",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ],
   					[
               "name" => "U-124",
               "type" => "Submarine",
-              "weight" => 90
+              "weight" => 5
             ]
           ]
         ]
@@ -481,6 +481,13 @@ class ScenarioCollection extends Collection {
   				"type" => "city",
   				"position" => [53.1125, 8.748611],
   				"harbor" => [2, 18]
+  			],
+        [
+  				"id" => 108,
+  				"name" => "Königsberg",
+  				"type" => "city",
+  				"position" => [54.733333, 20.483333],
+  				"harbor" => [1, 8]
   			],
 
 

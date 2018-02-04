@@ -19,12 +19,7 @@ export default class Datetime {
       'Sunday'
     ];
 
-    this.timeShift = {
-      hourly: (60 * 60),
-      hourly_quarter: (60 * 60 * 12),
-      daily: (60 * 60 * 24)
-    }
-
+    this.timeShift = (60 * 60);
 
     this.initControls();
 
@@ -83,8 +78,7 @@ export default class Datetime {
   // elapsedTime since game start in milliseconds
   update ( elapsedTime ) {
 
-    elapsedTime *= this.game.speed;
-    let dt = this.startDate.getTime() + (elapsedTime * this.timeShift.hourly);
+    let dt = this.startDate.getTime() + (elapsedTime * this.timeShift);
     this.currentDate = new Date(dt);
     this.render();
 

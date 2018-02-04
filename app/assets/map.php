@@ -24,11 +24,11 @@
 <?php include_once('elements/modal/production.php'); ?>
 <?php include_once('elements/modal/research.php'); ?>
 <?php include_once('elements/modal/economy.php'); ?>
+<?php include_once('elements/modal/convoys.php'); ?>
 <?php include_once('elements/modal/statistics.php'); ?>
 
 
 <?php include_once('elements/footerJS.php'); ?>
-
 
 <div class="stage"></div>
 

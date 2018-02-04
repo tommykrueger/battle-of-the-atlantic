@@ -80,7 +80,7 @@ export default class Worldmap {
     this.shipsGroup = this.mainGroup.append("g").attr("class", "ships");
 
 
-		this.projection = d3.geo.mercator()
+		this.projection = d3.geo.naturalEarth()
 			.scale(this.options.scale)
       .rotate(this.options.rotate)
 	    .translate([this.options.width / 2 + this.options.translate[0], this.options.height / 2 + this.options.translate[1]])

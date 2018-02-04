@@ -26,6 +26,10 @@
         <span class="link"><u>E</u>conomy</span>
       </li>
 
+      <li class="menu-nav-list-item" data-target="#modal-convoys">
+        <span class="link"><u>C</u>onvoys</span>
+      </li>
+
       <li class="menu-nav-list-item" data-target="#modal-intelligence">
         <span class="link"><u>I</u>ntelligence</span>
       </li>

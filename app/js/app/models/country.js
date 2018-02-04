@@ -32,17 +32,31 @@ export default class Country extends Model {
 
      // calculate the country data
      // .updateSummary()
-     // .updateVictoryProgress();
+     if (this.isPlayer) {
+       this.updateVictoryProgress();
+     }
+
      this.updateProduction();
      // .updateResearch();
      // .updateAI();
-     // .updateIntelligence(); // optionale
+     // .updateIntelligence(); // optional
 
   }
 
 
   renderSummary () {}
 
+
+  updateVictoryProgress () {
+
+    console.log( this.get('fleets') );
+
+    let percent = 45;
+
+    let $el = $('.victory-progress-bar-win');
+        $el.css('width', percent + '%');
+
+  }
 
 
   updateProduction (date) {

@@ -141,7 +141,7 @@ export default class Fleet extends Model {
 	calculateCurrentPosition (dtFrame) {
 
 		// one hour in game is one second in real time
-		let speed = 15 * (dtFrame * this.game.speed / 1000); // km per hour
+		let speed = 15 * (dtFrame / 1000); // km per hour
 		let pos = this.get('position');
 		let waypoints = this.get('waypoints');
 		let newPos = pos;
@@ -237,7 +237,9 @@ export default class Fleet extends Model {
 
 		let units = this.get('units');
 		let flagship = units.reduce((prev, current) => { return (prev.weight > current.weight) ? prev : current; });
+
 		return flagship.type.toLowerCase();
+		// return 'cruiser';
 
 	}
 

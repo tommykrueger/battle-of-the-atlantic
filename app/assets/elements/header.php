@@ -34,7 +34,7 @@
 
       <div class="victory-progress" data-tooltip="Victory Progress">
         <div class="victory-progress-bar"></div>
-        <div class="victory-progress-bar-win"></div>
+        <div class="victory-progress-bar-win" style="width: 30%"></div>
       </div>
 
     </div>
