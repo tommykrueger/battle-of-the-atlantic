@@ -9,32 +9,75 @@
 
   <div class="modal-content">
 
-    Convoy Series
 
-    Total Ships: 4687
-    Ships in Convoys: 2300
-    Free Ships: 210
+    <div class="property-list">
+      <span class="property-group property-group-inline">
+        <span class="property-label">Total Ships:</span>
+        <span class="property-value">4687</span>
+      </span>
+      <span class="property-group property-group-inline">
+        <span class="property-label">Ships in Convoys:</span>
+        <span class="property-value">2357</span>
+      </span>
+      <span class="property-group property-group-inline">
+        <span class="property-label">Free Ships:</span>
+        <span class="property-value">210</span>
+      </span>
+      <span class="property-group property-group-inline">
+        <span class="property-label">Total Supply Efficiency:</span>
+        <span class="property-value value-up">87%</span>
+      </span>
+    </div>
 
-    Loss Rate: 2%
 
-    <ol>
-      <li>
+    <table class="table table-dark">
+      <tr>
+        <th>Series</th>
+        <th>From &raquo; To</th>
+        <th>Status</th>
+        <th>Merchant Ships</th>
+        <th>Warships</th>
+        <th>Losses</th>
+        <th>Loss Rate</th>
+      </tr>
 
-        <div class="container">
-          <div class="column medium-2">HX</div>
-          <div class="column medium-2">Halifax</div>
-
-          <div class="column medium-4">
-            <div class="convoy-line is-active"> B </div>
+      <tr>
+        <td>HX</td>
+        <td>Halifax &raquo; Liverpool</td>
+        <td width="25%">
+          <div class="progress progress-convoys">
+            <div class="progress-bar">
+              <span></span>
+              <span class="one"></span>
+            </div>
           </div>
+        </td>
+        <td>348</td>
+        <td>21</td>
+        <td>3</td>
+        <td><span class="value value-down">1.1%</span></td>
+      </tr>
 
-          <div class="column medium-2">Liverpool</div>
-          <div class="column medium-2">Ships Mounted: 348</div>
+      <tr>
+        <td>SL</td>
+        <td>Freetown &raquo; Plymouth</td>
+        <td>
+          <div class="progress progress-convoys">
+            <div class="progress-bar">
+              <span></span>
+              <span class="one"></span>
+            </div>
+          </div>
+        </td>
+        <td>212</td>
+        <td>34</td>
+        <td>34</td>
+        <td><span class="value value-down">4.8%</span></td>
+      </tr>
 
-        </div>
+    </table>
 
-      </li>
-    </ol>
+
 
 
   </div>

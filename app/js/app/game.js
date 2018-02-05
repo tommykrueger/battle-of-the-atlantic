@@ -125,7 +125,8 @@ export default class Game {
           this.components.map.addPlace(new Place({
             game: this,
             name: place.name,
-            position: place.position
+            position: place.position,
+            properties: place
           }));
 
         });

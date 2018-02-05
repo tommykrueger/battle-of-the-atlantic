@@ -73,7 +73,7 @@ class ScenarioCollection extends Collection {
           "capital" => 101,
   		    "fleets" => [1000, 1001, 1002, 1003, 1004],
           "units" => [],
-          "places" => [101, 102, 103, 104, 105, 106, 107],
+          "places" => [101, 102, 103, 104, 105, 106, 107, 108],
           "player" => true,
 
           // ignore certain graph nodes
@@ -362,7 +362,7 @@ class ScenarioCollection extends Collection {
           "name" => "Liverpool",
           "type" => "city",
           "position" => [53.41058, -2.97794],
-          "harbor" => 10,
+          "harbor" => [4, 30],
           "air_field" => 10
         ],
         [
@@ -370,7 +370,7 @@ class ScenarioCollection extends Collection {
           "name" => "Plymouth",
           "type" => "city",
           "position" => [50.376289,	-4.143841],
-          "harbor" => 10,
+          "harbor" => [2, 16],
           "air_field" => 0
         ],
         [
@@ -378,7 +378,7 @@ class ScenarioCollection extends Collection {
           "name" => "Scapa Flow",
           "type" => "island",
           "position" => [58.9667, -2.9833],
-          "harbor" => 10,
+          "harbor" => [0, 2],
           "air_field" => 0
         ],
         [
@@ -386,7 +386,7 @@ class ScenarioCollection extends Collection {
           "name" => "Gibraltar",
           "type" => "city",
           "position" => [36.14474, -5.35257],
-          "harbor" => 10,
+          "harbor" => [0, 1],
           "air_field" => 0
         ],
         [
@@ -394,7 +394,7 @@ class ScenarioCollection extends Collection {
           "name" => "Portsmouth",
           "type" => "city",
           "position" => [50.842991, -1.101002],
-          "harbor" => 10,
+          "harbor" => [6, 24],
           "air_field" => 0
         ],
 
@@ -403,7 +403,7 @@ class ScenarioCollection extends Collection {
           "name" => "Capetown",
           "type" => "city",
           "position" => [-33.922667, 18.416689],
-          "harbor" => 10,
+          "harbor" => [0, 2],
           "air_field" => 0
         ],
   			[
@@ -411,7 +411,7 @@ class ScenarioCollection extends Collection {
           "name" => "Freetown",
           "type" => "city",
           "position" => [8.483333, -13.233056],
-          "harbor" => 10,
+          "harbor" => [0, 0],
           "air_field" => 0
         ],
   			[
@@ -419,7 +419,7 @@ class ScenarioCollection extends Collection {
           "name" => "Halifax",
           "type" => "city",
           "position" => [44.64787, -63.57156],
-          "harbor" => 10,
+          "harbor" => [0, 2],
           "air_field" => 0
         ],
   			[
@@ -427,7 +427,7 @@ class ScenarioCollection extends Collection {
           "name" => "Sydney",
           "type" => "city",
           "position" => [46.13, -60.1829],
-          "harbor" => 10,
+          "harbor" => [1, 12],
           "air_field" => 0
         ],
 
@@ -437,6 +437,7 @@ class ScenarioCollection extends Collection {
           "name" => "Berlin",
           "type" => "capital",
           "position" => [52.520645, 13.409779],
+          "harbor" => 0,
           "air_field" => 10
         ],
 
@@ -484,10 +485,17 @@ class ScenarioCollection extends Collection {
   			],
         [
   				"id" => 108,
+  				"name" => "Stettin",
+  				"type" => "city",
+  				"position" => [53.424722, 14.555278],
+  				"harbor" => [1, 12]
+  			],
+        [
+  				"id" => 109,
   				"name" => "Königsberg",
   				"type" => "city",
   				"position" => [54.733333, 20.483333],
-  				"harbor" => [1, 8]
+  				"harbor" => [1, 6]
   			],
 
 
@@ -584,6 +592,9 @@ class ScenarioCollection extends Collection {
   			]
   		],
 
+      "constructions" => []
+
+      /*
   		"constructions" => [
   			[
   				"type" => "radar",
@@ -609,6 +620,7 @@ class ScenarioCollection extends Collection {
   				"position" => [50.69730199380155, 1.8126102873551393]
   			]
   		]
+      */
 
 
     ];

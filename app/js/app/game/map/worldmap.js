@@ -152,7 +152,7 @@ export default class Worldmap {
 
       //this.renderPaths();
       //this.renderNodes();
-      // this.renderCountries(world);
+      this.renderCountries(world);
 
 
       this.s = this.shipsGroup
@@ -288,9 +288,9 @@ export default class Worldmap {
       this.land.attr('d', this.path);
     //}, 0);
 
-      setTimeout(() => {
+      //setTimeout(() => {
         this.graticules.attr("d", this.path);
-      }, 40);
+      //}, 40);
     //}
 
 
@@ -315,7 +315,7 @@ export default class Worldmap {
 
 
     // this.land.attr('d', this.path);
-    // this.countries.attr('d', this.path);
+    this.countries.attr('d', this.path);
     // this.countries.attr('d', this.path.projection(this.projection));
 
     this.fleets.forEach( (fleet) => {

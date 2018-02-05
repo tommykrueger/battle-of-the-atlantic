@@ -11,7 +11,7 @@ export default class Place extends Model {
 
 	constructor ( options = {} ) {
 
-    super();
+    super(options);
 
 		this.game = options.game;
 		this.name = options.name;
@@ -26,8 +26,11 @@ export default class Place extends Model {
 
 	renderView () {
 
+		let type = this.get('harbor').length ? 'harbor' : 'default';
+		let hasUnits = Math.round(Math.random()) ? true : false;
+
 		this.$parentContainer = $('.stage');
-		this.$el = $('<div class="place"></div>');
+		this.$el = $(`<div class="place place-type-${type}"></div>`);
 
 		this.$view = $(`
 			<span class="place-name">${this.name}</span>
