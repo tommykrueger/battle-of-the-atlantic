@@ -60,16 +60,16 @@ $options = {
 
 
 // define columns for very small devices
-@media screen and (min-width: 0px) and (max-width: $options.size.sm)
+@media screen and (min-width: 0px)
 
 	for num in (1..$options.grid)
-		.extrasmall-{num}
+		.standard-{num}
 			width: ((num / $options.grid) * 100) %
 
 
 
 // define columns for small devices
-@media screen and (min-width: $options.size.sm) and (max-width: $options.size.md)
+@media screen and (min-width: $options.size.sm)
 
 	for num in (1..$options.grid)
 		.small-{num}
@@ -78,7 +78,7 @@ $options = {
 
 
 // define columns for medium devices
-@media screen and (min-width: $options.size.md) and (max-width: $options.size.lg)
+@media screen and (min-width: $options.size.md)
 
 	for num in (1..$options.grid)
 		.medium-{num}

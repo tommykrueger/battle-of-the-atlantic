@@ -5,21 +5,37 @@
     <span class="combat-date">04.06.1942</span>
     <span class="combat-date-since">6h</span>
 
-    <span class="combat-name">Battle of Midway</span>
+    <div class="container combat-countries">
 
-    <div class="combat-countries">
 
-      <div class="combat-country combat-country-left">
+      <div class="column standard-4 combat-country combat-country-left">
+        <div class="combat-commander">
+          <img src="../public/img/people/isoruku_yamamoto.jpg" />
+        </div>
+
         <div class="combat-country-icon flag flag-jp"></div>
         <div class="combat-country-name">Japan</div>
+
       </div>
 
-      <div class="combat-progress-bar">
-        <div class="combat-progress-win" style="width: 78%;"></div>
-        <div class="combat-progress-lose"></div>
+      <div class="column standard-4">
+
+        <span class="combat-name">Battle of Midway</span>
+
+        <div class="combat-progress-bar">
+          <div class="combat-progress-win" style="width: 78%;"></div>
+          <div class="combat-progress-lose"></div>
+        </div>
+
       </div>
 
-      <div class="combat-country combat-country-right">
+
+
+      <div class="column standard-4 combat-country combat-country-right">
+        <div class="combat-commander">
+          <img src="../public/img/people/chester_nimitz.jpg" />
+        </div>
+
         <div class="combat-country-icon flag flag-us"></div>
         <div class="combat-country-name">United States</div>
       </div>

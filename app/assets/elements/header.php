@@ -9,6 +9,10 @@
       <ul class="country-info-list">
 
         <li class="country-info-list-item">
+          <span class="flag flag-large flag-de"></span>
+        </li>
+
+        <li class="country-info-list-item">
           <span class="label label-money">Money:</span>
           <span class="value" data-property="money">1200</span>
           <span class="value value-up" data-property="moneyflow">(+17)</span>

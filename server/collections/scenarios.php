@@ -17,7 +17,7 @@ class ScenarioCollection extends Collection {
   		"image" => "<path_to_image_file>",
 
   		"startDate" => "1939-09-1 00:00:00",
-  		"endDate" => "1950-01-01",
+  		"endDate" => "1950-01-01 00:00:00",
 
       "available_countries" => [1, 2],
 
@@ -50,10 +50,11 @@ class ScenarioCollection extends Collection {
   		    "fleets" => [1],
           "units" => [],
           "places" => [1,2,3,4,5,6],
+          "allow_convoys" => 1,
   				"properties" => [
   					"agressiveness" => 0,
-  					"population" => 47760000,
-            "population_growth" => 0.0043,
+  					"population" => 47500000,
+            "population_growth" => 0.0003,
   					"manpower" => 0.05,
   					"mobilization_level" => 1,
   					"resources" => [
@@ -71,13 +72,14 @@ class ScenarioCollection extends Collection {
   				"name" => "Germany",
   				"locale" => "de",
           "capital" => 101,
-  		    "fleets" => [1000, 1001, 1002, 1003, 1004],
+  		    "fleets" => [1000, 1001, 1002, 1003, 1004, 1005],
           "units" => [],
           "places" => [101, 102, 103, 104, 105, 106, 107, 108],
           "player" => true,
 
           // ignore certain graph nodes
-          "ignore" => [8, 9, 10, 11],
+          // "ignore" => [8, 9, 10, 11],
+          "ignore" => [],
   				"properties" => [
   					"agressiveness" => 0,
   					"population" => 79375000,
@@ -168,6 +170,7 @@ class ScenarioCollection extends Collection {
           "id" => 1,
           "name" => "Home Fleet",
           "country" => "en",
+          "harbor" => 4,
           "position" => [47.34164617, -7.26147461],
           "waypoints" => [
             [48.34164617, -9.26147461],
@@ -294,9 +297,10 @@ class ScenarioCollection extends Collection {
           "id" => 1002,
           "name" => "2. U-Bootflotte",
           "country" => "de",
-          "position" => [48.04018214, -10.05078125],
+          "mission" => "Seek and Destroy",
+          "position" => [47.906923768098366, -8.516438107103777],
           "waypoints" => [
-  					[54.71852354200168, 6.296593139620393]
+  					[47.906923768098366, -8.516438107103777]
   				],
           "units" => [
             [
@@ -341,6 +345,25 @@ class ScenarioCollection extends Collection {
               "name" => "U-124",
               "type" => "Submarine",
               "weight" => 5
+            ]
+          ]
+        ],
+        [
+          "id" => 1005,
+          "name" => "1. Kreuzergeschwader",
+          "country" => "de",
+          "mission" => "Convoy Rading",
+          "position" => [18.621608873542876, -39.86539589534923],
+          "waypoints" => [
+            [18.621608873542876, -39.86539589534923],
+            [4.3495632741827865, -27.098613532691243],
+            [-12.385382842721484, -6.917176493357928]
+          ],
+          "units" => [
+            [
+              "name" => "Admiral Graf Spee",
+              "type" => "HeavyCruiser",
+              "weight" => 73
             ]
           ]
         ]

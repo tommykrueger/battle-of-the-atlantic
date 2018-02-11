@@ -3,6 +3,8 @@
 import Model from '../framework/model';
 import FleetView from '../views/fleet';
 
+import CombatComponent from '../game/components/combat/combat';
+
 
 /**
  * A Fleet is a collection of ships.
@@ -20,12 +22,15 @@ export default class Fleet extends Model {
 		// flag for changed data set
 		this.changedDataFlag = true;
 
+		this.locked = false;
+
 		this.strategicIcons = {
 			aircraftcarrier: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16.104,51.908l16.971-16.971 M48.278,52.025L31.308,35.055',
 			merchant: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16,37h32 M32,42v10',
 			battleship: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M11,51h42 M15,43h34 M19,35h26',
 			destroyer: 'M59,59H5c0,0,0-5.625,0-12c0-14.912,12.088-27,27-27s27,12.088,27,27C59,52.195,59,59,59,59z M16,37h32 M32,42v10',
-			submarine: 'M59,32c0,14.912-12.088,27-27,27S5,46.912,5,32c0-6.375,0-12,0-12h54C59,20,59,26.805,59,32z M16,33h32 M32,38v10'
+			submarine: 'M59,32c0,14.912-12.088,27-27,27S5,46.912,5,32c0-6.375,0-12,0-12h54C59,20,59,26.805,59,32z M16,33h32 M32,38v10',
+			heavycruiser: 'M59,32c0,14.912-12.088,27-27,27S5,46.912,5,32c0-6.375,0-12,0-12h54C59,20,59,26.805,59,32z M16,33h32 M32,38v10'
 		}
 
 		this.renderView();
@@ -134,6 +139,14 @@ export default class Fleet extends Model {
 
 	}
 
+	isLocked () {
+
+		return this.locked;
+
+	}
+
+
+
 	/*
 	 * Calculate the position between the current position and the first waypoint
 	 * the fleet is moving to. The position is influenced by the fleets speed
@@ -190,10 +203,41 @@ export default class Fleet extends Model {
 		// if fleet was detected it can be calculated the fleet units
 		// depending on the mission the own fleet can attack that fleet
 
-		//if (this.get('mission') == this.app.config.missions) {
+		let pos = this.get('position');
+		let enemyFleets = this.game.fleets.filter((fleet) => { return fleet.get('country') != this.get('country') });
 
-		//}
+		if (this.get('mission') == 'Seek and Destroy') {
 
+			enemyFleets.forEach((fleet) => {
+				// console.log(fleet);
+
+				let d = this.game.components.map.distanceBetween(pos, fleet.get('position'));
+
+				if (d <= fleet.getMaxDetectionDistance()) {
+
+					console.log('d', d);
+
+					this.game.add('combats', new CombatComponent({
+							app: this.app,
+							game: this.game,
+							friendly: this,
+							enemy: fleet
+						})
+					);
+
+				}
+
+			});
+
+		}
+
+
+	}
+
+	// TODO
+	getMaxDetectionDistance () {
+
+		return 35;
 
 	}
 
@@ -226,7 +270,23 @@ export default class Fleet extends Model {
 
 
   // update this model with data
-  update () {
+  update (dtFrame) {
+
+		if (this.isMoving()) {
+
+			// console.log('fleet moving', fleet.get('name'));
+			// try to calculate the current position of the fleet
+			let newPos = this.calculateCurrentPosition(dtFrame);
+			//console.log('new pos', fleet.get('position'));
+
+			this.setPosition();
+
+		}
+
+		// checks if an enemy fleet is nearby
+		if (!this.isLocked()) {
+			this.checkForEnemies();
+		}
 
   }
 

@@ -26,15 +26,14 @@ export default class Place extends Model {
 
 	renderView () {
 
+
 		let type = this.get('harbor').length ? 'harbor' : 'default';
 		let hasUnits = Math.round(Math.random()) ? true : false;
 
 		this.$parentContainer = $('.stage');
 		this.$el = $(`<div class="place place-type-${type}"></div>`);
 
-		this.$view = $(`
-			<span class="place-name">${this.name}</span>
-		`);
+		this.$view = $(`<span class="place-name">${this.name}</span>`);
 
 		this.$parentContainer.append( this.$el.html(this.$view) );
 
@@ -45,20 +44,14 @@ export default class Place extends Model {
 
 		this.$el.on('click', (e) => {
 
-			// this.game.interface.components.detail.setData( this.getData() );
+			//this.placeView = new PlaceView();
+			console.log('open widndow');
+			$('#modal-place').show();
 
 		});
 
 	}
 
-
-	getData () {
-
-		return {
-			name: this.name
-		}
-
-	}
 
 
 	getView () {

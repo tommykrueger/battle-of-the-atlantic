@@ -34,6 +34,7 @@
       <tr>
         <th>Series</th>
         <th>From &raquo; To</th>
+        <th>Interval</th>
         <th>Status</th>
         <th>Merchant Ships</th>
         <th>Warships</th>
@@ -44,6 +45,25 @@
       <tr>
         <td>HX</td>
         <td>Halifax &raquo; Liverpool</td>
+        <td>12 days</td>
+        <td width="25%">
+          <div class="progress progress-convoys">
+            <div class="progress-bar">
+              <span></span>
+              <span class="one"></span>
+            </div>
+          </div>
+        </td>
+        <td>348</td>
+        <td>21</td>
+        <td>3</td>
+        <td><span class="value value-down">1.1%</span></td>
+      </tr>
+
+      <tr>
+        <td>SL</td>
+        <td>Halifax &raquo; Liverpool</td>
+        <td>12 days</td>
         <td width="25%">
           <div class="progress progress-convoys">
             <div class="progress-bar">
@@ -61,6 +81,7 @@
       <tr>
         <td>SL</td>
         <td>Freetown &raquo; Plymouth</td>
+        <td>14 days</td>
         <td>
           <div class="progress progress-convoys">
             <div class="progress-bar">

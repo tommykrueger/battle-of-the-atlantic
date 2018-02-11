@@ -81,6 +81,7 @@ export default class Game {
 
         this.countries = [];
         this.fleets = [];
+        this.combats = [];
 
         // init countries (player / AIs)
         // add places to map
@@ -108,6 +109,7 @@ export default class Game {
           this.data.fleets.forEach((fleet) => {
 
             let fleetInstance = new Fleet({
+              app: this.app,
               game: this,
               properties: fleet
             });
@@ -279,28 +281,23 @@ export default class Game {
         timeElapsed = (tFrame - startTime) - pTime;
         timeElapsed += (dtFrame);
 
-
         deltaElapsed += dtFrame;
-
-        console.log('d', deltaElapsed);
 
         this.fleets.forEach( (fleet) => {
 
-          if (fleet.isMoving()) {
-
-            // console.log('fleet moving', fleet.get('name'));
-            // try to calculate the current position of the fleet
-            let newPos = fleet.calculateCurrentPosition(dtFrame);
-            //console.log('new pos', fleet.get('position'));
-
-            fleet.setPosition();
-
-          }
-
-          // checks if an enemy fleet is nearby
-          fleet.checkForEnemies();
+          fleet.update(dtFrame);
 
         });
+
+
+        if (this.combats.length) {
+          this.combats.forEach( (combat) => {
+
+            combat.update(dtFrame);
+
+          });
+        }
+
 
         // process calculation after every second
         if (this.secondsElapsed != Math.round( (timeElapsed) / 1000) ) {
@@ -437,7 +434,7 @@ export default class Game {
           );
           */
 
-          this.components.tooltip.init();
+          // this.components.tooltip.init();
 
         }
 
@@ -459,6 +456,15 @@ export default class Game {
       this.stats.end();
 
     });
+
+  }
+
+
+
+
+  add ( type, model ) {
+
+    this[type].push(model);
 
   }
 

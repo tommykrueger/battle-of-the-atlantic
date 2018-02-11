@@ -20,17 +20,24 @@
 <?php include_once('elements/interface/summary.php'); ?>
 
 <?php include_once('elements/modal/units.php'); ?>
+<?php include_once('elements/modal/place.php'); ?>
 <?php include_once('elements/modal/places.php'); ?>
 <?php include_once('elements/modal/production.php'); ?>
 <?php include_once('elements/modal/research.php'); ?>
-<?php include_once('elements/modal/economy.php'); ?>
+<?php //include_once('elements/modal/economy.php'); ?>
 <?php include_once('elements/modal/convoys.php'); ?>
+<?php include_once('elements/modal/convoy.php'); ?>
 <?php include_once('elements/modal/statistics.php'); ?>
 
 
 <?php include_once('elements/footerJS.php'); ?>
 
 <div class="stage"></div>
+
+
+<!--
+<div class="cursor cursor-operation-area"></div>
+-->
 
 </body>
 </html>

@@ -40,7 +40,8 @@ export default class Worldmap {
     this.setViewportDimensions();
 
     // test render
-    this.ships = new Array(0);
+    this.shipNumber = 500;
+    this.ships = [];
 
     this.constructions = [];
     this.fleets = [];
@@ -71,14 +72,6 @@ export default class Worldmap {
       .attr("width", this.options.width)
       .attr("height", this.options.height)
       .attr('class', 'sea');
-
-    // define the map render layers
-    this.mainGroup = this.svg.append("g").attr('class', 'main');
-    this.fleetsGroup = this.mainGroup.append("g").attr("class", "fleets");
-    this.routesGroup = this.mainGroup.append("g").attr("class", "routes-paths");
-    this.fleetPathGroup = this.mainGroup.append("g").attr("class", "fleet-paths");
-    this.shipsGroup = this.mainGroup.append("g").attr("class", "ships");
-
 
 		this.projection = d3.geo.naturalEarth()
 			.scale(this.options.scale)
@@ -122,6 +115,13 @@ export default class Worldmap {
         .on("dblclick.zoom", null);
 
 
+    // define the map render layers
+    this.mainGroup = this.svg.append("g").attr('class', 'main');
+    this.fleetsGroup = this.mainGroup.append("g").attr("class", "fleets");
+    this.routesGroup = this.mainGroup.append("g").attr("class", "routes-paths");
+    this.fleetPathGroup = this.mainGroup.append("g").attr("class", "fleet-paths");
+    this.shipsGroup = this.mainGroup.append("g").attr("class", "ships");
+
     this.pathsGroup = this.svg.append("g").attr("class", "paths");
     this.nodesGroup = this.svg.append("g").attr("class", "nodes");
 
@@ -145,26 +145,30 @@ export default class Worldmap {
         this.renderNodes();
         this.renderPaths();
 
+
+        let nodes = this.pathfinder.nodes.getNodes();
+        console.log(nodes);
+
+        for (var i=0; i<this.shipNumber; i++) {
+
+          let node = nodes[this.game.arithmetics.random(0, nodes.length-1)];
+
+          this.ships.push({
+            latlon: [
+              parseFloat(node.latlon[0]) + (-0.9 + 0.35 * Math.random()),
+              parseFloat(node.latlon[1]) + (-1.4 + 1.40 * Math.random())
+            ]
+          });
+
+        };
+
+        this.renderShips();
+
       });
 
       this.renderGraticules();
       this.renderLand(world);
-
-      //this.renderPaths();
-      //this.renderNodes();
       this.renderCountries(world);
-
-
-      this.s = this.shipsGroup
-        .selectAll(".ship")
-        .data(this.ships)
-        .enter()
-        .append('circle')
-          .attr('class', 'ship')
-          .attr('r', 4)
-          .attr('cx', () => { return Math.random() * 500 })
-          .attr('cy', () => { return Math.random() * 300 });
-
 
 
       setTimeout( () => {
@@ -172,7 +176,7 @@ export default class Worldmap {
         var i = 0;
         d3.timer(() => {
 
-          //this.projection.rotate([i * .1, 0]);
+          //this.projection.rotate([-i * .5, 0]);
           //this.redraw();
 
           i++;
@@ -266,7 +270,6 @@ export default class Worldmap {
 
     this.redraw();
 
-
     //this.backgroundCircle.attr('r', d3.event.scale);
     //this.path.pointRadius(2 * d3.event.scale / this.scale0);
 
@@ -293,6 +296,13 @@ export default class Worldmap {
       //}, 40);
     //}
 
+    if (this.s != undefined) {
+      this.s
+        .attr('cx', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[0] })
+        .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] });
+    }
+
+
 
     if (this.nodes != undefined) {
       this.nodes
@@ -312,6 +322,10 @@ export default class Worldmap {
 
         });
     }
+
+
+
+
 
 
     // this.land.attr('d', this.path);
@@ -433,8 +447,6 @@ export default class Worldmap {
 
   renderPaths () {
 
-
-
     this.pathsGroup
       .selectAll(".path").remove();
 
@@ -525,7 +537,7 @@ export default class Worldmap {
 
   renderLand (world) {
 
-    this.land = this.mainGroup.append("g")
+    this.land = this.svg.append("g")
       .attr("class", "land")
       .selectAll("path")
         .data([topojson.object(world, world.objects.land)])
@@ -567,6 +579,27 @@ export default class Worldmap {
         .append("path")
           .attr('class', 'country')
           .attr("d", this.path);
+
+  }
+
+
+
+  renderShips () {
+
+    this.s = this.shipsGroup
+      .selectAll(".ship")
+      .data(this.ships)
+      .enter()
+      .append('circle')
+        .attr('data-tooltip', (d) => {
+          return 'Empire of the Sea'
+        })
+        .attr('class', 'ship')
+        .attr('r', 4)
+        .attr('cx', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[0] })
+        .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] });
+
+    this.game.components.tooltip.init();
 
   }
 

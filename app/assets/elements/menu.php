@@ -22,12 +22,18 @@
         <span class="link"><u>R</u>esearch</span>
       </li>
 
+      <!--
       <li class="menu-nav-list-item" data-target="#modal-economy">
         <span class="link"><u>E</u>conomy</span>
       </li>
+    -->
 
       <li class="menu-nav-list-item" data-target="#modal-convoys">
         <span class="link"><u>C</u>onvoys</span>
+      </li>
+
+      <li class="menu-nav-list-item" data-target="#modal-convoy">
+        <span class="link"><u>C</u>onvoy</span>
       </li>
 
       <li class="menu-nav-list-item" data-target="#modal-intelligence">

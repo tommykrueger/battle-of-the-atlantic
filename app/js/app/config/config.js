@@ -39,7 +39,7 @@ export default class Config {
 			// the fleet tries to seek and destroy enemy submarines
 			'Submarine Attack',
 
-			// the fleet focus on sinkign enemy merchant ships and convoys
+			// the fleet focus on sinking enemy merchant ships and convoys
 			'Convoy Rading',
 
 			// the fleet tries to find single ships and sink them before escaping undetected
