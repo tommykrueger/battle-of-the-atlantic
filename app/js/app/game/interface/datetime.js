@@ -32,16 +32,7 @@ export default class Datetime {
       e.preventDefault();
 
       let $btn = $(e.currentTarget);
-
       this.game.togglePause();
-      $btn.toggleClass('datetime-is-paused');
-
-      if ($btn.hasClass('datetime-is-paused')) {
-        $btn.addClass('bgBlink');
-      }
-      else {
-        $btn.removeClass('bgBlink');
-      }
 
     });
 

@@ -25,7 +25,7 @@ export default class App {
     this.test = new Test();
 
     // load the app specific Game
-    this.game = new Game();
+    this.game = new Game({ app: this });
 
   }
 

@@ -21,6 +21,7 @@ export default class Combat extends Component {
 
 		this.game.togglePause();
 		this.render();
+		this.initEvents();
 
 	}
 
@@ -28,6 +29,15 @@ export default class Combat extends Component {
 	render () {
 
 		$('.combat').show();
+
+	}
+
+
+	initEvents () {
+
+		$('.combat .detail-close-btn').on('click', () => {
+			$('.combat').hide();
+		})
 
 	}
 

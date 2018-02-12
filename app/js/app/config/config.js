@@ -13,6 +13,12 @@ export default class Config {
     };
 
 
+		this.merchantMarine = {
+			'Tanker': 0.2,
+			'Cargo Ship': 0.8
+		}
+
+
 		this.cargos = [
 			'Sugar',
 			'Iron Ore',

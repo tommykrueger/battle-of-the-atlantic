@@ -39,10 +39,6 @@ export default class Worldmap {
 
     this.setViewportDimensions();
 
-    // test render
-    this.shipNumber = 500;
-    this.ships = [];
-
     this.constructions = [];
     this.fleets = [];
     this.places = [];
@@ -134,31 +130,27 @@ export default class Worldmap {
       //var features = world.features;
       //console.log(features);
 
-      var self = this;
-
-
       this.pathfinder = new Pathfinder({ app: this.app, game: this.game });
       this.pathfinder.loadAll(() => {
 
-        console.log('loaded');
+        // console.log('loaded');
         this.pathfinder.calculateDistances();
         this.renderNodes();
         this.renderPaths();
 
 
         let nodes = this.pathfinder.nodes.getNodes();
-        console.log(nodes);
+        // console.log(nodes);
 
-        for (var i=0; i<this.shipNumber; i++) {
+        for (var i=0; i<this.game.DATA.units.length; i++) {
 
           let node = nodes[this.game.arithmetics.random(0, nodes.length-1)];
 
-          this.ships.push({
-            latlon: [
-              parseFloat(node.latlon[0]) + (-0.9 + 0.35 * Math.random()),
-              parseFloat(node.latlon[1]) + (-1.4 + 1.40 * Math.random())
-            ]
-          });
+          this.game.DATA.units[i].latlon = [
+            parseFloat(node.latlon[0]) + (-0.9 + 0.35 * Math.random()),
+            parseFloat(node.latlon[1]) + (-1.4 + 1.40 * Math.random())
+          ];
+
 
         };
 
@@ -554,13 +546,13 @@ export default class Worldmap {
         .attr("d", this.path);
         */
 
-/*
-    this.land = this.mainGroup.append("g")
-      .attr("class", 'land')
-      .append("path")
-      .datum(topojson.merge(world, world.objects.ne_50m_admin_0_countries.geometries))
-      .attr("d", this.path);
-*/
+    /*
+        this.land = this.mainGroup.append("g")
+          .attr("class", 'land')
+          .append("path")
+          .datum(topojson.merge(world, world.objects.ne_50m_admin_0_countries.geometries))
+          .attr("d", this.path);
+    */
 
 
 
@@ -588,11 +580,12 @@ export default class Worldmap {
 
     this.s = this.shipsGroup
       .selectAll(".ship")
-      .data(this.ships)
+      .data(this.game.DATA.units)
       .enter()
       .append('circle')
+        .attr('id', (d) => { return 'unit-' + d.id })
         .attr('data-tooltip', (d) => {
-          return 'Empire of the Sea'
+          return d.name;
         })
         .attr('class', 'ship')
         .attr('r', 4)
@@ -600,6 +593,13 @@ export default class Worldmap {
         .attr('cy', (d) => { return this.projection([d.latlon[1], d.latlon[0]])[1] });
 
     this.game.components.tooltip.init();
+
+  }
+
+
+  removeUnit ( $id ) {
+
+      d3.select('#unit-' + $id).remove();
 
   }
 

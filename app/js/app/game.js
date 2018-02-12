@@ -23,13 +23,17 @@ import Scenario from './models/scenario'
 import Ship from './models/ship'
 
 
+import Gamelog from './views/gamelog'
+
 // load game components
 import ExpandableComponent from './game/components/expandable/expandable'
 import TooltipComponent from './game/components/tooltip'
 
 export default class Game {
 
-  constructor () {
+  constructor (options) {
+
+    this.app = options.app;
 
     console.log('loading game');
 
@@ -43,6 +47,8 @@ export default class Game {
 
     // the currently selected object
     this.selectedModel = null;
+
+    this.DATA = [];
 
     this.stateRunning = false;
 
@@ -60,12 +66,14 @@ export default class Game {
     // do the stuff before the render loop
 
     // load the selected scenario
-    this.scenario = new Scenario({game: this});
+    this.scenario = new Scenario({ game: this });
     this.scenario.fetch('../server/app.php?action=scenario&id=1', (data) => {
     //this.scenario.fetch('json/scenarios/sealion.json', (data) => {
 
-      console.log('loaded scenario');
-      console.log(data);
+      //console.log('loaded scenario');
+      //console.log(data);
+
+      this.DATA = data;
 
       if (data) {
 
@@ -158,10 +166,21 @@ export default class Game {
           console.log(d);
         });
 
+
+        console.log(this.DATA);
+
       }
 
     });
 
+
+  }
+
+
+
+  addDataSet (where, data) {
+
+    this.DATA[where].push(data);
 
   }
 
@@ -172,7 +191,8 @@ export default class Game {
       map: new Worldmap({ game: this, map: this.data.map }),
       research: new Research(),
       tooltip: new TooltipComponent({ app: this.app, game: this }),
-      expandable: new ExpandableComponent({ app: this.app, game: this })
+      expandable: new ExpandableComponent({ app: this.app, game: this }),
+      gamelog: new Gamelog({ app: this.app, game: this })
     };
 
     this.interaction = new Interaction({app: this.app, game: this});
@@ -469,7 +489,10 @@ export default class Game {
   }
 
 
-  getCurrentDate () {
+  getCurrentDate ( formatted = false ) {
+
+    if (formatted)
+      return this.interface.components.datetime.getDateString();
 
     return this.interface.components.datetime.currentDate;
 
@@ -496,6 +519,15 @@ export default class Game {
   togglePause() {
 
     this.stateRunning = !this.stateRunning;
+
+    $('.datetime').toggleClass('datetime-is-paused');
+
+    if ($('.datetime').hasClass('datetime-is-paused')) {
+      $('.datetime').addClass('bgBlink');
+    }
+    else {
+      $('.datetime').removeClass('bgBlink');
+    }
 
   }
 

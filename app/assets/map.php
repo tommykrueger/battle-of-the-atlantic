@@ -13,11 +13,11 @@
 <?php include_once('elements/interface/combat.php'); ?>
 <?php include_once('elements/interface/detail.php'); ?>
 <?php include_once('elements/interface/event.php'); ?>
-<?php include_once('elements/interface/gamelog.php'); ?>
+<?php //include_once('elements/interface/gamelog.php'); ?>
 <?php include_once('elements/interface/infobox.php'); ?>
 <?php include_once('elements/interface/tooltip.php'); ?>
 <?php include_once('elements/interface/economy.php'); ?>
-<?php include_once('elements/interface/summary.php'); ?>
+<?php // include_once('elements/interface/summary.php'); ?>
 
 <?php include_once('elements/modal/units.php'); ?>
 <?php include_once('elements/modal/place.php'); ?>

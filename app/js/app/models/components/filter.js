@@ -1,4 +1,8 @@
 
+/**
+ * Predefined filter sets to use for data extraction
+ * This one reads data only but does NOT change it.
+ */
 export default class Filter {
 
   constructor (options = {}) {
@@ -6,8 +10,7 @@ export default class Filter {
     this.app 		= options.app;
     this.game 	= options.game;
 
-    this.logger = new Logger();
-    this.utils 	= new Utils();
+    this.DATA = this.game.DATA;
 
   }
 
@@ -15,7 +18,7 @@ export default class Filter {
   getRandomUnitName (unitType, country = 'PLAYER') {
 
     if (country == 'PLAYER') {
-      
+
     }
 
     return name;
@@ -23,5 +26,29 @@ export default class Filter {
   }
 
 
+  sunkEnemyMerchantShips ( country = 'de' ) {
+
+    let data = this.DATA.sunk.filter((a) => (a.category == 'merchant') && (a.sunk_by_country == 'de'));
+    return data;
+
+  }
+
+  sunkEnemyWarships ( country = 'de' ) {
+
+    let data = this.DATA.sunk.filter((a) => (a.category != 'merchant') && (a.sunk_by_country == country));
+    return data.length;
+
+  }
+
+  sunkEnemyGRT ( country = 'de' ) {
+    let data = this.sunkEnemyMerchantShips(country);
+
+    if (data.length) {
+      return data.map(a => a.grt).reduce((a, b) => { return a + b });
+    }
+
+    return 0;
+
+  }
 
 }

@@ -38,7 +38,7 @@ class ScenarioCollection extends Collection {
   			"type" => "geojson",
   			"scale" => 1000,
   			"scaleExtent" => [150, 5000],
-  			"translate" => [0, 1200]
+  			"translate" => [0, 900]
   		],
 
       "countries" => [
@@ -49,23 +49,22 @@ class ScenarioCollection extends Collection {
           "capital" => 1,
   		    "fleets" => [1],
           "units" => [],
+          "merchant_marine" => 360, // 3670,
           "places" => [1,2,3,4,5,6],
           "allow_convoys" => 1,
-  				"properties" => [
-  					"agressiveness" => 0,
-  					"population" => 47500000,
-            "population_growth" => 0.0003,
-  					"manpower" => 0.05,
-  					"mobilization_level" => 1,
-  					"resources" => [
-  						"money" => 1000,
-  						"oil" => 10000,
-  						"iron" => 5000,
-  						"food" => 200000,
-  						"consumer_goods" => 3000,
-  						"war_supplies" => 1000
-  					]
-  				]
+					"agressiveness" => 0,
+					"population" => 47500000,
+          "population_growth" => 0.0003,
+					"manpower" => 0.05,
+					"mobilization_level" => 1,
+					"resources" => [
+						"money" => 1000,
+						"oil" => 10000,
+						"iron" => 5000,
+						"food" => 200000,
+						"consumer_goods" => 3000,
+						"war_supplies" => 1000
+					]
   			],
         [
   				"id" => 2,
@@ -74,18 +73,25 @@ class ScenarioCollection extends Collection {
           "capital" => 101,
   		    "fleets" => [1000, 1001, 1002, 1003, 1004, 1005],
           "units" => [],
+          "merchant_marine" => 160, // 960
           "places" => [101, 102, 103, 104, 105, 106, 107, 108],
           "player" => true,
 
           // ignore certain graph nodes
           // "ignore" => [8, 9, 10, 11],
           "ignore" => [],
-  				"properties" => [
-  					"agressiveness" => 0,
-  					"population" => 79375000,
-            "population_growth" => 0.0034,
-  					"manpower" => 0.1,
-  					"mobilization_level" => 5
+					"agressiveness" => 0,
+					"population" => 79375000,
+          "population_growth" => 0.0034,
+					"manpower" => 0.1,
+					"mobilization_level" => 5,
+          "resources" => [
+						"money" => 1000,
+						"oil" => 10000,
+						"iron" => 5000,
+						"food" => 200000,
+						"consumer_goods" => 3000,
+						"war_supplies" => 1000
   				],
           "production" => [
             [
@@ -171,6 +177,7 @@ class ScenarioCollection extends Collection {
           "name" => "Home Fleet",
           "country" => "en",
           "harbor" => 4,
+          "mission" => "Forced Engagement",
           "position" => [47.34164617, -7.26147461],
           "waypoints" => [
             [48.34164617, -9.26147461],
@@ -265,9 +272,9 @@ class ScenarioCollection extends Collection {
         [
           "id" => 1000,
           "name" => "Kriegsmarineflotte",
-  				"state" => "moving",
           "country" => "de",
-          "position" => [47.04018214, -17.05078125],
+          "mission" => "Convoy Rading",
+          "position" => [48.751280947995355, -15.674651385040738],
           "waypoints" => [
   					[35.91574742, -5.64834595]
   				],
@@ -283,6 +290,7 @@ class ScenarioCollection extends Collection {
           "id" => 1001,
           "name" => "1. U-Bootflotte",
           "country" => "de",
+          "mission" => "Convoy Rading",
           "position" => [46.04018214, -17.05078125],
           "waypoints" => [],
           "units" => [
@@ -314,6 +322,7 @@ class ScenarioCollection extends Collection {
           "id" => 1003,
           "name" => "3. U-Bootflotte",
           "country" => "de",
+          "mission" => "Convoy Rading",
           "position" => [54.910032282781174, 7.39115555718762],
           "waypoints" => [],
           "units" => [
@@ -328,6 +337,7 @@ class ScenarioCollection extends Collection {
           "id" => 1004,
           "name" => "4. U-Bootflotte",
           "country" => "de",
+          "mission" => "Convoy Rading",
           "position" => [55.39846962140262, -29.202952148718758],
           "waypoints" => [],
           "units" => [
@@ -352,7 +362,7 @@ class ScenarioCollection extends Collection {
           "id" => 1005,
           "name" => "1. Kreuzergeschwader",
           "country" => "de",
-          "mission" => "Convoy Rading",
+          "mission" => "waiting",
           "position" => [18.621608873542876, -39.86539589534923],
           "waypoints" => [
             [18.621608873542876, -39.86539589534923],
@@ -615,7 +625,16 @@ class ScenarioCollection extends Collection {
   			]
   		],
 
-      "constructions" => []
+      "constructions" => [],
+
+      "sunk" => [
+
+        [
+          "id" => 1,
+          "unit" => 1
+        ]
+
+      ]
 
       /*
   		"constructions" => [

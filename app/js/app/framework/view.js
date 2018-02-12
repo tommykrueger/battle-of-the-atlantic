@@ -14,8 +14,8 @@ export default class View {
 
 	constructor ( options = {} ) {
 
-		this.options = options;
 		this.app = options.app;
+		this.game = options.game;
 
 		this.utils = new Utils();
 

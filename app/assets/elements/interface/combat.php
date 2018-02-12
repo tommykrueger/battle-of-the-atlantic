@@ -1,5 +1,7 @@
 <div class="combat">
 
+  <span class="detail-close-btn">×</span>
+
   <div class="combat-header">
 
     <span class="combat-date">04.06.1942</span>

@@ -1,7 +1,12 @@
 
 import Model from '../framework/model';
 
+import Unit from '../models/unit';
 import ProductionItem from '../views/production-item';
+
+
+// views
+import SummaryView from '../views/country/summary';
 
 /*
  * Define the country object skeleton
@@ -13,12 +18,16 @@ export default class Country extends Model {
 
     super(options);
 
-    console.log('init country: ', this.properties);
-
-    this.isPlayer = this.properties.player || false;
+    this.isPlayer = this.get('player') || false;
     this.isAI = false;
 
     this.productionListViews = [];
+
+    this.merchantMarine = [];
+
+    this.beforeRender();
+    this.render();
+    this.afterRender();
 
     if (this.isPlayer) {
       this.renderSummary();
@@ -28,15 +37,61 @@ export default class Country extends Model {
   }
 
 
+
+  beforeRender () {
+
+    let merchantMarine = this.get('merchant_marine');
+
+    for (var i=0; i<merchantMarine; i++) {
+
+      let cargoType = this.game.config.cargos[this.game.arithmetics.random(0, this.game.config.cargos.length-1)];
+
+      let properties = {
+        id: this.game.DATA.units.length,
+        name: 'Dauntless',
+        type: 'Cargo Ship',
+        category: 'merchant',
+        country: this.get('id'),
+        cargo: {
+          type: cargoType,
+          amount: this.game.arithmetics.random(2500, 25000)
+        },
+        grt: (this.game.arithmetics.random(1000, 5000))
+      };
+
+      let unit = new Unit({ app: this.app, game: this.game, properties: properties });
+      this.merchantMarine.push(unit);
+    }
+
+  }
+
+
+  afterRender() {
+
+    console.log('init country: ', this);
+
+  }
+
+
+  render() {
+    //what ?
+  }
+
+
+  // on every game tick
   update () {
 
      // calculate the country data
      // .updateSummary()
      if (this.isPlayer) {
+
        this.updateVictoryProgress();
+       this.updateSummary();
+
      }
 
      this.updateProduction();
+
      // .updateResearch();
      // .updateAI();
      // .updateIntelligence(); // optional
@@ -44,12 +99,30 @@ export default class Country extends Model {
   }
 
 
-  renderSummary () {}
+  renderSummary () {
+
+    // define the views for the stage
+    this.views = {
+      summary: new SummaryView({
+        app: this.app,
+        game: this.game,
+        data: {
+          id: this.get('id'),
+          sunk: {
+            grt: 0,
+            merchants: 0,
+            warships: 0,
+          }
+        }
+      })
+    };
+
+  }
 
 
   updateVictoryProgress () {
 
-    console.log( this.get('fleets') );
+    // console.log( this.get('fleets') );
 
     let percent = 45;
 
@@ -62,7 +135,7 @@ export default class Country extends Model {
   updateProduction (date) {
 
     if (this.properties.production == undefined)
-      return
+      return;
 
     // check production queue progress
     this.properties.production.forEach((p) => {
@@ -72,7 +145,7 @@ export default class Country extends Model {
        let dDays = this.daysBetween(date1, this.game.getCurrentDate()) / 24;
 
        p.percent = (dDays * 100 / p.days);
-       console.log('offset days', dDays, p.percent);
+       // console.log('offset days', dDays, p.percent);
        // update the view of the production
 
        $('[data-id='+p.id+'] .progress-percent').text( p.percent.toFixed(2) + '%' );
@@ -83,6 +156,24 @@ export default class Country extends Model {
     if (this.isPlayer) {
       //this.renderProductionList()
     }
+
+  }
+
+
+
+  updateSummary () {
+
+    let data = {
+      sunk: {
+        grt: this.dataFilter.sunkEnemyGRT(),
+        merchants: this.dataFilter.sunkEnemyMerchantShips().length,
+        warships: this.dataFilter.sunkEnemyWarships(),
+      }
+    }
+
+    // prepare the data and update the view
+    this.views.summary.setData(data);
+    this.views.summary.update();
 
   }
 

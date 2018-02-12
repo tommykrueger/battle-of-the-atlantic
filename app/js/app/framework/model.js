@@ -1,6 +1,9 @@
 import Logger from './logger';
 import Utils from './utils';
 
+// the ultimate data filter
+import DataFilter from '../models/components/filter';
+
 export default class Model {
 
 
@@ -8,6 +11,7 @@ export default class Model {
 
     this.app 		= options.app;
 		this.game 	= options.game;
+		this.dataFilter = new DataFilter({ app: this.app, game: this.game });
 
     this.logger = new Logger();
     this.utils 	= new Utils();

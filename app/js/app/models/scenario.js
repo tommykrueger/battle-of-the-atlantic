@@ -8,11 +8,9 @@ export default class Scenario extends Model {
 
 	constructor ( options = {} ) {
 
-    super();
+    super(options);
 
-		this.game = options.game;
 		this.data = {};
-
 		this.occuredEvents = [];
 
 	}

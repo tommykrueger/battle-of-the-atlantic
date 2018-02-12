@@ -215,7 +215,7 @@ export default class Fleet extends Model {
 
 				if (d <= fleet.getMaxDetectionDistance()) {
 
-					console.log('d', d);
+					//console.log('d', d);
 
 					this.game.add('combats', new CombatComponent({
 							app: this.app,
@@ -232,12 +232,57 @@ export default class Fleet extends Model {
 		}
 
 
+
+		if (this.get('mission') == 'Convoy Rading') {
+
+			//console.log('Convoy Rading: ', this.get('name'));
+
+			for (var i=0; i<this.game.DATA.units.length; i++) {
+
+				let unit = this.game.DATA.units[i];
+
+				if (unit.category != 'warship') {
+
+					let d = this.game.components.map.distanceBetween(pos, unit.latlon);
+
+					if (d <= this.getMaxDetectionDistance()) {
+
+						console.log('d', d, i);
+
+						// remove unit from global data set
+						let sunkUnit = this.game.DATA.units.splice(i, 1);
+
+						sunkUnit[0].sunk_by = this.get('name');
+						sunkUnit[0].sunk_by_country = this.get('country');
+						sunkUnit[0].date = this.game.getCurrentDate();
+
+						// add unit to sunk ships
+						this.game.DATA.sunk.push(sunkUnit[0]);
+
+						// add entry to the game log
+						this.game.components.gamelog.addItem('sunkreport', [this.get('name'), sunkUnit[0].name, 'Western Approaches']);
+
+						// remove unit from worldmap
+						this.game.components.map.removeUnit(unit.id);
+
+						break;
+
+					}
+
+				}
+
+			};
+
+		}
+
+
 	}
 
 	// TODO
 	getMaxDetectionDistance () {
 
-		return 35;
+		// 35 km
+		return 32;
 
 	}
 

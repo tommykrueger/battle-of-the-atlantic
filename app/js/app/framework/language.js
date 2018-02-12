@@ -51,7 +51,7 @@ export default class Language {
 			translatedString = App.translations[key];
 
 		if (replace.length > 0)
-			return translatedString.replace(/%s/g, function() { return replace.shift()})
+			return translatedString.replace(/%s/g, function() { return replace.shift() })
 
     return translatedString;
 
